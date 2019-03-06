@@ -1,10 +1,10 @@
 const express = require('express');
-//const cors  = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const unitsRouter = require('./routes/units');
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 
 
-mongoose.connect('mongodb://localhost:27017/users');
+mongoose.connect('mongodb://localhost:27017/adminCafeterias');
 
 const connection = mongoose.connection;
 
@@ -29,8 +29,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELET
-E');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
 
     next();
 });
@@ -38,6 +37,7 @@ E');
 app.get('/', indexRouter);
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/users', usersRouter);
+app.use('/units', unitsRouter);
 
 const port = 4000;
 app.listen(port, () => console.log('Expresss running on port ' + port));
