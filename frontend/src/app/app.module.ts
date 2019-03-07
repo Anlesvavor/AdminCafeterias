@@ -26,10 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user.service';
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent},
-  { path: 'edit/:id', component: EditComponent},
-  { path: 'list', component: ListComponent},
-  { path: '', redirectTo: 'list', pathMatch: 'full'}
+  { path: 'users/create', component: CreateComponent},
+  { path: 'users/edit/:id', component: EditComponent},
+  { path: 'users/list', component: ListComponent},
+  { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
 
 @NgModule({
