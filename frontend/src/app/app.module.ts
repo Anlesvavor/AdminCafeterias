@@ -24,6 +24,8 @@ import { EditComponent } from './components/users/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UserService } from './user.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   { path: 'users/create', component: CreateComponent},
@@ -37,7 +39,9 @@ const routes: Routes = [
     AppComponent,
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
