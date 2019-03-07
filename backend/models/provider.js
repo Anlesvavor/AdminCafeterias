@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Shema;
+const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const schema = new Schema({
@@ -9,7 +9,7 @@ const schema = new Schema({
     _telephoneNumber: String,
     _email: String,
     _rfc: String,
-    _PC: String,
+    _postalCode: String,
     _street: String,
     _number: String,
     _extNumber: String,
@@ -17,13 +17,13 @@ const schema = new Schema({
 });
 
 class Provider {
-    constructor(name, contact, telephoneNumber, email, rfc, PC, street, number, extNumber, colony) {
+    constructor(name, contact, telephoneNumber, email, rfc, postalCode, street, number, extNumber, colony) {
         this._name = name;
         this._contact = contact;
         this._telephoneNumber = telephoneNumber;
         this._email = email;
         this._rfc = rfc;
-        this._PC = PC;
+        this._postalCode = postalCode;
         this._street = street;
         this._number = number;
         this._extNumber = extNumber;
@@ -71,12 +71,12 @@ class Provider {
         this._rfc = value;
     }
 
-    get PC() {
-        return this._PC;
+    get postalCode() {
+        return this._postalCode;
     }
 
-    set PC(value) {
-        this._PC = value;
+    set postalCode(value) {
+        this._postalCode = value;
     }
 
     get street() {

@@ -1,7 +1,6 @@
-const Provider = require('../models/provider');
+const Product = require('../models/product');
 const ObjectId = require('mongodb').ObjectId;
 const {validationResult} = require('express-validator/check');
-
 
 function create(req, res, next) {
 
@@ -12,33 +11,28 @@ function create(req, res, next) {
         });
     }
 
-    let provider = new Provider({
-        _name : req.body.name,
-        _contact : req.body.concat,
-        _telephoneNumber: req.body.telephoneNumber,
-        _email :req.body.email,
-        _rfc :req.body.rfc,
-        _postalCode :req.body.postalCode,
-        _street :req.body.street,
-        _number :req.body.number,
-        _extNumber :req.body.extNumber,
-        _colony :req.body.colony,
+    let product = new Product({
+      _name : req.body.name,
+      _unities: req.body.unities,
+      _category: req.body.category,
+      _description: req.body.description,
+      _price: req.body.price
     });
 
-    provider.save()
-        .then(obj => {
+    product.save()
+        .then((obj) => {
             return res.status(200).json({
                 errors:[],
-               data:obj
-           })
+                data:obj
+            })
         })
-        .catch(err => {
+        .catch((err) => {
             return res.status(500).json({
                 errors:[{message: 'Something went wrong on create'}],
                 data:[err]
             })
-        });
-}
+        })
+};
 
 function listAll(req, res, next) {
 
@@ -47,10 +41,10 @@ function listAll(req, res, next) {
     const options = {
         page: page,
         limit: 20,
-        select: '_name _concat _telephoneNumber _email _rfc _postalCode _street _number _extNumber _colony'
-    };
+        select: '_name _unities _category _description _price'
+    }
 
-    Provider.paginate({}, options)
+    Product.paginate({}, options)
         .then(obj => {
             res.status(200).json({
                 errors:[],
@@ -66,10 +60,10 @@ function listAll(req, res, next) {
 }
 
 function listOne(req, res, next) {
-    Provider.findById(req.params.id, (err, provider) => {
+    Product.findById(req.params.id, (err, product) => {
         res.status(200).json({
             errors:[],
-            data: provider
+            data: product
         });
     }).catch((err) => {
         res.status(500).json({
@@ -80,37 +74,32 @@ function listOne(req, res, next) {
 }
 
 function update(req, res, next) {
-    Provider.findById(req.params.id)
+    Product.findById(req.params.id)
         .then((obj) => {
-            obj.name = req.body.name;
-            obj.contact = req.body.contact;
-            obj.telephoneNumber = req.body.telephoneNumber;
-            obj.email = req.body.email;
-            obj.rfc = req.body.rfc;
-            obj.postalCode = req.body.postalCode;
-            obj.street = req.body.street;
-            obj.number = req.body.number;
-            obj.extNumber = req.body.extNumber;
-            obj.colony = req.body.colony;
+            obj.name = req.body.name ? req.body.name : obj.name;
+            obj.unities = req.body.unities ? req.body.unities : obj.unities;
+            obj.category = req.body.category ? req.body.category : obj.category;
+            obj.description = req.body.description ? req.body.description : obj.description;
+            obj.price = req.body.price ? req.body.price : obj.price;
 
             obj.save()
                 .then(obj => {
-                    res.json('Update done');
+                    res.json({product : obj});
                 })
                 .catch(err => {
                     res.status(400).send('Update failed');
                 })
         })
         .catch((err) => {
-            res.status(500).json({
-                errors: [{ message: 'somethign gone wrong'}],
-                data: []
-            })
+        res.status(500).json({
+            errors: [{ message: 'somethign gone wrong'}],
+            data: []
         })
+    })
 }
 
 function drop(req, res, next) {
-    Provider.findByIdAndRemove({_id: req.params.id})
+    Product.findByIdAndRemove({_id: req.params.id})
         .then( obj => {
             res.status(200).json({
                 errors:[],
@@ -131,4 +120,4 @@ module.exports = {
     listAll,
     update,
     drop
-};
+}
