@@ -1,9 +1,8 @@
-const User = require('../models/user');
+const DiningRoom = require('../models/diningRoom');
 const ObjectId = require('mongodb').ObjectId;
 const {validationResult} = require('express-validator/check');
 
 function create(req, res, next) {
-
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -12,15 +11,13 @@ function create(req, res, next) {
         });
     }
 
-    let user = new User({
-        _email: req.body.email,
-        _password: req.body.password,
-        _firstName: req.body.firstName,
-        _lastName: req.body.lastName,
-        _role: req.body.role
+    let diningRoom = new DiningRoom({
+      _name : req.body.name,
+      _user : req.body.user,
+      _description: req.body.description
     });
 
-    user.save()
+    diningRoom.save()
         .then((obj) => {
             return res.status(200).json({
                 errors:[],
@@ -42,10 +39,10 @@ function listAll(req, res, next) {
     const options = {
         page: page,
         limit: 20,
-        select: '_email _password _firstName _lastName _role'
+        select: '_name _user _description'
     }
 
-    User.paginate({}, options)
+    DiningRoom.paginate({}, options)
         .then(obj => {
             res.status(200).json({
                 errors:[],
@@ -58,14 +55,13 @@ function listAll(req, res, next) {
                 data: []
             });
         })
-
 }
 
 function listOne(req, res, next) {
-    User.findById(req.params.id, (err, user) => {
+    DiningRoom.findById(req.params.id, (err, diningRoom) => {
         res.status(200).json({
             errors:[],
-            data: user
+            data: diningRoom
         });
     }).catch((err) => {
         res.status(500).json({
@@ -76,17 +72,15 @@ function listOne(req, res, next) {
 }
 
 function update(req, res, next) {
-    User.findById(req.params.id)
+    DiningRoom.findById(req.params.id)
         .then((obj) => {
-            obj.email = req.body.email ? req.body.email : obj.email;
-            obj.password = req.body.password ? req.body.password : obj.password;
-            obj.firstName = req.body.firstName ? req.body.firstName : obj.firstName;
-            obj.lastName = req.body.lastName ? req.body.lastName : obj.lastName;
-            obj.role = req.body.role ? req.body.role : obj.role;
+            obj.name = req.body.name ? req.body.name : obj.name;
+            obj.user = req.body.user ? req.body.user : obj.user;
+            obj.description = req.body.description ? req.body.description : obj.description;
 
             obj.save()
                 .then(obj => {
-                    res.json('Update done');
+                    res.json({diningRoom : obj});
                 })
                 .catch(err => {
                     res.status(400).send('Update failed');
@@ -101,7 +95,7 @@ function update(req, res, next) {
 }
 
 function drop(req, res, next) {
-    User.findByIdAndRemove({_id: req.params.id})
+    DiningRoom.findByIdAndRemove({_id: req.params.id})
         .then( obj => {
             res.status(200).json({
                 errors:[],
