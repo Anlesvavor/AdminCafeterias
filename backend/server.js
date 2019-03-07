@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const unitsRouter = require('./routes/units');
+const providersRouter = require('./routes/providers');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.get('/', indexRouter);
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/users', usersRouter);
 app.use('/units', unitsRouter);
+app.use('/providers', providersRouter);
 
 const port = 4000;
 app.listen(port, () => console.log('Expresss running on port ' + port));
