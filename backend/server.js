@@ -7,7 +7,8 @@ const usersRouter = require('./routes/users');
 const unitsRouter = require('./routes/units');
 const providersRouter = require('./routes/providers');
 const productsRouter = require('./routes/products');
-const diningRoomRouter = require('./routes/diningRooms');
+const diningRoomsRouter = require('./routes/diningRooms');
+const ordersRouter = require('./routes/orders');
 
 const app = express();
 
@@ -43,7 +44,8 @@ app.use('/users', usersRouter);
 app.use('/units', unitsRouter);
 app.use('/providers', providersRouter);
 app.use('/products', productsRouter);
-app.use('/diningRooms', diningRoomRouter);
+app.use('/diningRooms', diningRoomsRouter);
+app.use('/orders', ordersRouter);
 
 
 const port = 4000;
