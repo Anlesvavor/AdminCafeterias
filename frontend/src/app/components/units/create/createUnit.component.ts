@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { UnitService } from "../../../unit.service";
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  templateUrl: './createUnit.component.html',
+  styleUrls: ['./createUnit.component.css']
 })
 export class CreateUnitComponent implements OnInit {
   createForm: FormGroup;
