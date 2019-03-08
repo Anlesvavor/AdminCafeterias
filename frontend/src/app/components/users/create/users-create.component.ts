@@ -7,10 +7,10 @@ import { UserService } from "../../../user.service";
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  templateUrl: './users-create.component.html',
+  styleUrls: ['./users-create.component.css']
 })
-export class CreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit {
 
   createForm : FormGroup;
 

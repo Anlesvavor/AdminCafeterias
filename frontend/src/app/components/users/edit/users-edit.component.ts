@@ -10,10 +10,10 @@ import { User } from '../../../user.model';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  templateUrl: './users-edit.component.html',
+  styleUrls: ['./users-edit.component.css']
 })
-export class EditComponent implements OnInit {
+export class UserEditComponent implements OnInit {
 
   id: String;
   user: any = {};

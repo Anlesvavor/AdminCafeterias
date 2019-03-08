@@ -7,10 +7,10 @@ import { UserService } from '../../../user.service';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.css']
 })
-export class ListComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   users: any=[];
   dislayedColumns = ['_email', '_password', '_firstName', '_lastName', '_role', '_actions'];

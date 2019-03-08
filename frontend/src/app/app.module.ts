@@ -18,30 +18,40 @@ import { MatToolbarModule,
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './components/users/list/list.component';
-import { CreateComponent } from './components/users/create/create.component';
-import { EditComponent } from './components/users/edit/edit.component';
+import { UserListComponent } from './components/users/list/users-list.component';
+import { UserCreateComponent } from './components/users/create/users-create.component';
+import { UserEditComponent } from './components/users/edit/users-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UserService } from './user.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProvidersEditComponent } from './providers/providers-edit/providers-edit.component';
+import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
+import { ProvidersCreateComponent } from './providers/providers-create/providers-create.component';
 
 const routes: Routes = [
-  { path: 'users/create', component: CreateComponent},
-  { path: 'users/edit/:id', component: EditComponent},
-  { path: 'users/list', component: ListComponent},
+  { path: 'users/create', component: UserCreateComponent},
+  { path: 'users/edit/:id', component: UserEditComponent},
+  { path: 'users/list', component: UserListComponent},
+  { path: 'providers/create', component: ProvidersListComponent},
+  { path: 'providers/edit/:id', component: ProvidersEditComponent},
+  { path: 'providers/list', component: ProvidersListComponent},
+
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    CreateComponent,
-    EditComponent,
+    UserListComponent,
+    UserCreateComponent,
+    UserEditComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ProvidersEditComponent,
+    ProvidersListComponent,
+    ProvidersCreateComponent
   ],
   imports: [
     BrowserModule,
