@@ -59,10 +59,11 @@
 
 }
 
-.sidebar {
+.sidebar-sticky {
   width: $sidebar-collapsed-width !important;
   background-color: $gray-900;
   min-height: calc(100vh - #{$navbar-base-height});
+  position: absolute;
   @include sidebar-icons;
   .nav-item {
     .nav-link {
