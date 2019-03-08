@@ -61,7 +61,10 @@ const routes: Routes = [
     SidebarComponent,
     ProvidersEditComponent,
     ProvidersListComponent,
-    ProvidersCreateComponent
+    ProvidersCreateComponent,
+    ListUnitComponent,
+    CreateUnitComponent,
+    EditUnitComponent
   ],
   imports: [
     BrowserModule,
