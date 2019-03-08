@@ -1,0 +1,20 @@
+
+
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Add a Unit</div>
+  <div class="card-body">
+    <form [formGroup]="createForm">
+      <div class="form-group">
+        <div class="form-row">
+            <div class="form-label-group">
+              <input formControlName="name" type="text" id="nameUnit" class="form-control" placeholder="nameUnit" required="required" autofocus="autofocus" #firstName>
+              <label for="firstName">Unit Name</label>
+          </div>
+        </div>
+      </div>
+      <button class="btn" routerLink="/unit/list">Back</button>
+      <button class="btn btn-primary " type="submit" (click)="addUnit(nameUnit.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+    </form>
+  </div>
+
+</div>

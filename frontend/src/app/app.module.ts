@@ -27,10 +27,20 @@ import { UserService } from './user.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { ListUnitComponent } from './components/units/list/listUnit.component';
+import { CreateUnitComponent } from './components/units/create/createUnit.component';
+import { EditUnitComponent } from './components/units/edit/editUnit.component';
+import { UnitService } from './unit.service';
+
 const routes: Routes = [
   { path: 'users/create', component: CreateComponent},
   { path: 'users/edit/:id', component: EditComponent},
   { path: 'users/list', component: ListComponent},
+
+  { path: 'units/create', component: CreateUnitComponent},
+  { path: 'units/edit/:id', component: EditUnitComponent},
+  { path: 'units/list', component: ListUnitComponent},
+
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
 
@@ -62,7 +72,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, UnitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

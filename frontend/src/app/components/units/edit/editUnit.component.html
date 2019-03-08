@@ -1,0 +1,21 @@
+
+
+  <div class="card card-register mx-auto mt-5">
+    <div class="card-header">Update a Unit</div>
+    <div class="card-body">
+      <!-- [(ng model)]-->
+      <form [formGroup]="updateForm">
+        <div class="form-group">
+          <div class="form-row">
+              <div class="form-label-group">
+                <input formControlName="unitName" type="text" id="unitName" class="form-control" placeholder="Unit name" required="required" autofocus="autofocus" #firstName>
+                <label for="unitName">Name</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button routerLink="/unit/list">Back</button>
+        <button type="submit" (click)="updateUnit(unitName.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+      </form>
+    </div>
+  </div>
