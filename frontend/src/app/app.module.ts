@@ -30,13 +30,23 @@ import { ProvidersEditComponent } from './providers/providers-edit/providers-edi
 import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
 import { ProvidersCreateComponent } from './providers/providers-create/providers-create.component';
 
+import { ListUnitComponent } from './components/units/list/listUnit.component';
+import { CreateUnitComponent } from './components/units/create/createUnit.component';
+import { EditUnitComponent } from './components/units/edit/editUnit.component';
+import { UnitService } from './unit.service';
+
 const routes: Routes = [
+
   { path: 'users/create', component: UserCreateComponent},
   { path: 'users/edit/:id', component: UserEditComponent},
   { path: 'users/list', component: UserListComponent},
   { path: 'providers/create', component: ProvidersCreateComponent},
   { path: 'providers/edit/:id', component: ProvidersEditComponent},
   { path: 'providers/list', component: ProvidersListComponent},
+
+  { path: 'units/create', component: CreateUnitComponent},
+  { path: 'units/edit/:id', component: EditUnitComponent},
+  { path: 'units/list', component: ListUnitComponent},
 
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
