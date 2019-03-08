@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
   }
 
   editUser(id) {
+    console.log(id);
     this.router.navigate([`/edit/${id}`]);
   }
 

@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 
-mongoose.connect('mongodb://localhost:27017/adminCafeterias');
+mongoose.connect('mongodb://localhost:27017/users');
 
 const connection = mongoose.connection;
 
@@ -48,5 +48,5 @@ app.use('/diningRooms', diningRoomsRouter);
 app.use('/orders', ordersRouter);
 
 
-const port = 4000;
+const port = 4444;
 app.listen(port, () => console.log('Expresss running on port ' + port));

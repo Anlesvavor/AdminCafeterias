@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+
 
 import { MatSnackBar } from "@angular/material";
 
@@ -25,10 +26,10 @@ export class EditComponent implements OnInit {
   createForm() {
     this.updateForm = this.fb.group({
       email: ['', Validators.required],
-      password: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      role: ['', Validators.required]
+      password: '',
+      firstName: '',
+      lastName: '',
+      role: ''
     });
   }
 
@@ -48,7 +49,7 @@ export class EditComponent implements OnInit {
 
   updateUser(email, password, firstName, lastName, role) {
     this.userService.updateUser(this.id, email, password, firstName, lastName, role).subscribe(() => {
-      this.router.navigate([`/list`]);
+      this.router.navigate([`/users/list`]);
     });
   }
 }

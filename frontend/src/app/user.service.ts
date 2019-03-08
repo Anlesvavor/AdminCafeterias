@@ -9,7 +9,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 export class UserService {
 
-  uri = 'http://192.168.3.190:4444';
+  uri = 'http://192.168.100.100:4444';
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   getUserById(id) {
-    return this.http.get(`${this.uri}/users/${id}`);
+    return this.http.get(`${this.uri}/users/show/${id}`);
   }
 
   addUser(email, password, firstName, lastName, role) {
@@ -36,10 +36,11 @@ export class UserService {
       lastName: lastName,
       role: role
     };
-    return this.http.post(`${this.uri}/users/`, user);
+    return this.http.post(`${this.uri}/users/new`, user);
   }
 
   updateUser(id, email, password, firstName, lastName, role) {
+    console.log("tic");
     const user = {
       email: email,
       password: password,
@@ -47,10 +48,11 @@ export class UserService {
       lastName: lastName,
       role: role
     };
-    return this.http.put(`${this.uri}/users/${id}`, user);
+    console.log("toc");
+    return this.http.put(`${this.uri}/users/edit/${id}`, user);
   }
 
   dropUser(id) {
-    return this.http.delete(`${this.uri}/users/${id}`);
+    return this.http.delete(`${this.uri}/users/delete/${id}`);
   }
 }

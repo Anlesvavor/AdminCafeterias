@@ -31,10 +31,15 @@
 -->
 
 <div class="card mb-3">
+
   <div class="card-header">
     <i class="fas fa-table"></i>
-    Data Table Example</div>
+    Users</div>
+
+
   <div class="card-body">
+    <button routerLink="/users/create" class="btn btn-primary">Add User</button>
+
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
@@ -70,8 +75,9 @@
               {{u._role}}
             </td>
             <td>
-              <button (click)="editUser(u._id)">Edit</button>
-              <button (click)="dropUser(u._id)">Delete</button>
+              <button routerLink="/users/edit/{{u._id}}" class="btn btn-warning">Edit</button>
+
+              <button (click)="dropUser(u._id)" class="btn btn-danger">Delete</button>
             </td>
           </tr>
         </tbody>
