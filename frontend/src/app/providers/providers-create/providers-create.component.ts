@@ -33,7 +33,7 @@ export class ProvidersCreateComponent implements OnInit {
 
   addProvider(name, contact, telephoneNumber, email, rfc, postalCode, street, number, extNumber, colony) {
     this.providerService.addProvider(name, contact, telephoneNumber, email, rfc, postalCode, street, number, extNumber, colony).subscribe(() => {
-      this.router.navigate(['/list']);
+      this.router.navigate(['providers/list']);
     });
   }
 

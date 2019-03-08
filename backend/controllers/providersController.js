@@ -14,7 +14,7 @@ function create(req, res, next) {
 
     let provider = new Provider({
         _name : req.body.name,
-        _contact : req.body.concat,
+        _contact : req.body.contact,
         _telephoneNumber: req.body.telephoneNumber,
         _email :req.body.email,
         _rfc :req.body.rfc,
@@ -47,7 +47,7 @@ function listAll(req, res, next) {
     const options = {
         page: page,
         limit: 20,
-        select: '_name _concat _telephoneNumber _email _rfc _postalCode _street _number _extNumber _colony'
+        select: '_name _contact _telephoneNumber _email _rfc _postalCode _street _number _extNumber _colony'
     };
 
     Provider.paginate({}, options)
