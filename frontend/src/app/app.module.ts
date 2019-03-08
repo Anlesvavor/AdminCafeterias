@@ -72,7 +72,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, UnitService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
