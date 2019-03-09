@@ -9,6 +9,7 @@ const providersRouter = require('./routes/providers');
 const productsRouter = require('./routes/products');
 const diningRoomsRouter = require('./routes/diningRooms');
 const ordersRouter = require('./routes/orders');
+const categoriesRouter = require('./routes/categories');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/providers', providersRouter);
 app.use('/products', productsRouter);
 app.use('/diningRooms', diningRoomsRouter);
 app.use('/orders', ordersRouter);
+app.use('/categories', categoriesRouter);
 
 
 const port = 4444;
