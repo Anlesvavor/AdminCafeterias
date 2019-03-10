@@ -15,8 +15,6 @@ export class CreateUnitComponent implements OnInit {
     });
   }
   addUnit(name) {
-    console.log("tssss");
-    console.log(name);
     this.unitService.addUnit(name).subscribe(() => {
       this.router.navigate(['/list']);
     });

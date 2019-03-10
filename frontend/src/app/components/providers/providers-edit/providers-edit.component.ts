@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 
-import { ProviderService } from "../../provider.service";
-import { Provider } from "../../provider.model";
+import { ProviderService } from "../../../provider.service";
+import { Provider } from "../../../provider.model";
 import {MatSnackBar} from "@angular/material";
 
 @Component({

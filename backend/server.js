@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/users');
 const connection = mongoose.connection;
 
 connection.once('open', () => {
-    console.log('MongoDB database connection establiched successfully!');
+    console.log('MongoDB database connection established successfully!');
 });
 
 // cabeceras http

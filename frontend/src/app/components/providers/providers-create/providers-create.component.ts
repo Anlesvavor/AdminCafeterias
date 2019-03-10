@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Validator} from "@angular/forms";
 import { Router }  from '@angular/router';
 
-import { Provider } from "../../provider.model";
-import { ProviderService } from "../../provider.service";
+import { Provider } from "../../../provider.model";
+import { ProviderService } from "../../../provider.service";
 
 
 

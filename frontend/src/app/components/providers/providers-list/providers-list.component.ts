@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
-import {Provider} from "../../provider.model";
-import {ProviderService} from "../../provider.service";
+import {Provider} from "../../../provider.model";
+import {ProviderService} from "../../../provider.service";
 
 
 @Component({
