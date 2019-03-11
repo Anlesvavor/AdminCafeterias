@@ -11,6 +11,7 @@ const diningRoomsRouter = require('./routes/diningRooms');
 const ordersRouter = require('./routes/orders');
 const categoriesRouter = require('./routes/categories');
 const loginRouter = require('./routes/login');
+const requisitionsRouter = require('./routes/requisitions');
 
 const app = express();
 
@@ -49,7 +50,7 @@ app.use('/products', productsRouter);
 app.use('/diningRooms', diningRoomsRouter);
 app.use('/orders', ordersRouter);
 app.use('/categories', categoriesRouter);
-
+app.use('/requisitions', requisitionsRouter);
 
 const port = 4444;
 app.listen(port, () => console.log('Expresss running on port ' + port));
