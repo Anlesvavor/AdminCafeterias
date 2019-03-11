@@ -55,10 +55,10 @@ export class ListUnitComponent implements OnInit {
     this.router.navigate([`/edit/${name}`]);
   }
 
-  dropUnit(name) {
-    console.log(name);
-    this.unitService.dropUnit(name).subscribe(() => {
+  dropUnit(id) {
+    this.unitService.dropUnit(id).subscribe(() => {
       this.fetchUnits();
+      this.router.navigate(['/units/list'])
     })
   }
 

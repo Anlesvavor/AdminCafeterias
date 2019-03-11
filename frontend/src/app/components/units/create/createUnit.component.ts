@@ -16,7 +16,7 @@ export class CreateUnitComponent implements OnInit {
   }
   addUnit(name) {
     this.unitService.addUnit(name).subscribe(() => {
-      this.router.navigate(['/list']);
+      this.router.navigate(['/units/list']);
     });
   }
   ngOnInit() {
