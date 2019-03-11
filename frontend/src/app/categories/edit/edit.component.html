@@ -1,0 +1,18 @@
+
+
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Update a Category</div>
+  <div class="card-body">
+    <!-- [(ng model)]-->
+    <form [formGroup]="updateForm">
+      <div class="form-group">
+        <div class="form-label-group">
+          <input formControlName="name" type="text" id="name" class="form-control" placeholder="Name" required="required" #name>
+          <label for="name">Name</label>
+        </div>
+      </div>
+      <button routerLink="/categories/list">Back</button>
+      <button type="submit" (click)="updateCategory(name.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+    </form>
+  </div>
+</div>

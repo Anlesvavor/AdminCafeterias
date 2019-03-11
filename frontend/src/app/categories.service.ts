@@ -7,14 +7,14 @@ import { map, catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UnitService {
+export class CategoriesService {
 
   uri = 'http://localhost:4444';
 
   constructor(private http: HttpClient) { }
 
-  getUnits() {
-    return this.http.get<any>(`${this.uri}/units`).pipe(
+  getCategories() {
+    return this.http.get<any>(`${this.uri}/categories`).pipe(
       map(this.extractData)
     );
   }
@@ -24,27 +24,27 @@ export class UnitService {
     return body || {};
   }
 
-  getUnitById(id) {
-    return this.http.get(`${this.uri}/units/show/${name}`);
+  getCategoryById(id) {
+    return this.http.get(`${this.uri}/categories/show/${id}`);
   }
 
-  addUnit(name) {
-    const unit = {
-      name: name,
+  addCategory(name) {
+    const category = {
+      name: name
     };
-    return this.http.post(`${this.uri}/units/new`, unit);
+    return this.http.post(`${this.uri}/categories/new`, category);
   }
 
-  updateUnit(name) {
+  updateCategory(id, name) {
     console.log("tic");
-    const unit = {
+    const category = {
       name: name
     };
     console.log("toc");
-    return this.http.put(`${this.uri}/units/edit/${name}`, unit);
+    return this.http.put(`${this.uri}/categories/edit/${id}`, category);
   }
 
-  dropUnit(id) {
-    return this.http.delete(`${this.uri}/units/delete/${id}`);
+  dropCategory(id) {
+    return this.http.delete(`${this.uri}/categories/delete/${id}`);
   }
 }

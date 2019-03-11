@@ -1,0 +1,41 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Categories</div>
+
+
+  <div class="card-body">
+    <button routerLink="/categories/create" class="btn btn-primary">Add Category</button>
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr *ngFor="let u of categories">
+          <td>
+            {{u._name}}
+          </td>
+          <td>
+            <button routerLink="/categories/edit/{{u._id}}" class="btn btn-warning">Edit</button>
+
+            <button (click)="dropCategory(u._id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

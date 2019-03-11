@@ -26,14 +26,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProvidersEditComponent } from './providers/providers-edit/providers-edit.component';
-import { ProvidersListComponent } from './providers/providers-list/providers-list.component';
-import { ProvidersCreateComponent } from './providers/providers-create/providers-create.component';
+import { ProvidersEditComponent } from './components/providers/providers-edit/providers-edit.component';
+import { ProvidersListComponent } from './components/providers/providers-list/providers-list.component';
+import { ProvidersCreateComponent } from './components/providers/providers-create/providers-create.component';
+
+import { ProductsEditComponent } from './components/products/edit/edit.component';
+import { ProductsListComponent } from './components/products/list/list.component';
+import { ProductsCreateComponent } from './components/products/create/create.component';
+
 
 import { ListUnitComponent } from './components/units/list/listUnit.component';
 import { CreateUnitComponent } from './components/units/create/createUnit.component';
 import { EditUnitComponent } from './components/units/edit/editUnit.component';
 import { UnitService } from './unit.service';
+import { CategoriesEditComponent } from './categories/edit/edit.component';
+import { CategoriesListComponent } from './categories/list/list.component';
+import { CategoriesCreateComponent } from './categories/create/create.component';
+
 
 const routes: Routes = [
 
@@ -47,6 +56,15 @@ const routes: Routes = [
   { path: 'units/create', component: CreateUnitComponent},
   { path: 'units/edit/:id', component: EditUnitComponent},
   { path: 'units/list', component: ListUnitComponent},
+
+  { path: 'categories/create', component: CategoriesCreateComponent},
+  { path: 'categories/edit/:id', component: CategoriesEditComponent},
+  { path: 'categories/list', component: CategoriesListComponent},
+
+
+  { path: 'products/create', component: ProductsCreateComponent},
+  { path: 'products/edit/:id', component: ProductsEditComponent},
+  { path: 'products/list', component: ProductsListComponent},
 
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
@@ -64,7 +82,13 @@ const routes: Routes = [
     ProvidersCreateComponent,
     ListUnitComponent,
     CreateUnitComponent,
-    EditUnitComponent
+    EditUnitComponent,
+    ProductsEditComponent,
+    ProductsListComponent,
+    ProductsCreateComponent,
+    CategoriesEditComponent,
+    CategoriesListComponent,
+    CategoriesCreateComponent
   ],
   imports: [
     BrowserModule,

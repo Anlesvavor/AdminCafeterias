@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  uri = 'http://192.168.1.82:4444';
+  uri = 'http://localhost:4444';
 
   constructor(private http: HttpClient) { }
 

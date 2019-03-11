@@ -10,7 +10,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 export class ProviderService {
 
-  uri = 'http://192.168.3.190:4444';
+  uri = 'http://localhost:4444';
 
   constructor(private http: HttpClient) { }
 

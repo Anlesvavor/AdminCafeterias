@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
 
   products: any=[];
   //dislayedColumns = ['_name', '_contact', 'telephoneNumber', '_email', '_rfc', '_postalCode', '_street', '_number', '_extNumber', '_colony', '_actions'];
