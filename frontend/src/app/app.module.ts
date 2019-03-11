@@ -26,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 import { ProvidersEditComponent } from './components/providers/providers-edit/providers-edit.component';
 import { ProvidersListComponent } from './components/providers/providers-list/providers-list.component';
 import { ProvidersCreateComponent } from './components/providers/providers-create/providers-create.component';
@@ -34,6 +36,7 @@ import { ProductsEditComponent } from './components/products/edit/edit.component
 import { ProductsListComponent } from './components/products/list/list.component';
 import { ProductsCreateComponent } from './components/products/create/create.component';
 
+import { DinnersCreateComponent } from './components/dinners/create/create.component';
 
 import { ListUnitComponent } from './components/units/list/listUnit.component';
 import { CreateUnitComponent } from './components/units/create/createUnit.component';
@@ -49,6 +52,8 @@ const routes: Routes = [
   { path: 'users/create', component: UserCreateComponent},
   { path: 'users/edit/:id', component: UserEditComponent},
   { path: 'users/list', component: UserListComponent},
+  { path: 'dashboard', component: DashboardComponent},
+
   { path: 'providers/create', component: ProvidersCreateComponent},
   { path: 'providers/edit/:id', component: ProvidersEditComponent},
   { path: 'providers/list', component: ProvidersListComponent},
@@ -61,6 +66,7 @@ const routes: Routes = [
   { path: 'categories/edit/:id', component: CategoriesEditComponent},
   { path: 'categories/list', component: CategoriesListComponent},
 
+  { path: 'dinners/create', component: DinnersCreateComponent},
 
   { path: 'products/create', component: ProductsCreateComponent},
   { path: 'products/edit/:id', component: ProductsEditComponent},
@@ -77,6 +83,7 @@ const routes: Routes = [
     UserEditComponent,
     NavbarComponent,
     SidebarComponent,
+    DashboardComponent,
     ProvidersEditComponent,
     ProvidersListComponent,
     ProvidersCreateComponent,
@@ -86,6 +93,7 @@ const routes: Routes = [
     ProductsEditComponent,
     ProductsListComponent,
     ProductsCreateComponent,
+    DinnersCreateComponent,
     CategoriesEditComponent,
     CategoriesListComponent,
     CategoriesCreateComponent

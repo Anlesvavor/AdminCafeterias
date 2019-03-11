@@ -10,6 +10,7 @@ const productsRouter = require('./routes/products');
 const diningRoomsRouter = require('./routes/diningRooms');
 const ordersRouter = require('./routes/orders');
 const categoriesRouter = require('./routes/categories');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', indexRouter);
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/login', loginRouter);
 app.use('/users', usersRouter);
 app.use('/units', unitsRouter);
 app.use('/providers', providersRouter);
