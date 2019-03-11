@@ -39,9 +39,9 @@ import { ListUnitComponent } from './components/units/list/listUnit.component';
 import { CreateUnitComponent } from './components/units/create/createUnit.component';
 import { EditUnitComponent } from './components/units/edit/editUnit.component';
 import { UnitService } from './unit.service';
-import { CategoriesEditComponent } from './categories/edit/edit.component';
-import { CategoriesListComponent } from './categories/list/list.component';
-import { CategoriesCreateComponent } from './categories/create/create.component';
+import { CategoriesEditComponent } from './components/categories/edit/edit.component';
+import { CategoriesListComponent } from './components/categories/list/list.component';
+import { CategoriesCreateComponent } from './components/categories/create/create.component';
 
 
 const routes: Routes = [

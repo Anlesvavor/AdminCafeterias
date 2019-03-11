@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {CategoriesService} from "../../categories.service";
-import {Category} from "../../category.model";
+import {CategoriesService} from "../../../categories.service";
+import {Category} from "../../../category.model";
 import {FormGroup} from "@angular/forms";
 
 @Component({
