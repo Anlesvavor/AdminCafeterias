@@ -1,7 +1,6 @@
 
-
 <div class="card card-register mx-auto mt-5">
-  <div class="card-header">Add a Provider</div>
+  <div class="card-header">Add a Product</div>
   <div class="card-body">
     <form [formGroup]="createForm">
       <div class="form-group">
@@ -12,60 +11,35 @@
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <input formControlName="contact" type="text" id="contact" class="form-control" placeholder="contact" required="required" #contact>
-          <label for="contact">Contact</label>
+          <input formControlName="unities" type="text" id="unities" class="form-control" placeholder="unities" required="required" #unities>
+          <label for="unities">Unities</label>
         </div>
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <input formControlName="telephoneNumber" type="tel" id="telephoneNumber" class="form-control" placeholder="Telephone Number" required="required" #telephoneNumber>
-          <label for="telephoneNumber">Telephone Number</label>
+          <!--<label for="category">Category</label>-->
+          <select formControlName="category" id="category" class="form-control" required="required"  #category>
+            <option *ngFor="let c of categories" value="{{c._name}}" >
+              {{c._name}}
+            </option>
+          </select>
         </div>
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" #email>
-          <label for="inputEmail">Email address</label>
+          <input formControlName="description" type="text" id="description" class="form-control" placeholder="Description" required="required" #description>
+          <label for="description">Description</label>
         </div>
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <input formControlName="rfc" type="text" id="rfc" class="form-control" placeholder="RFC" required="required" #rfc>
-          <label for="rfc">RFC</label>
+          <input formControlName="price" type="number" id="price" class="form-control" placeholder="Price" required="required" #price>
+          <label for="price">Price</label>
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-label-group">
-          <input formControlName="postalCode" type="text" id="postalCode" class="form-control" placeholder="Postal Code" required="required" #postalCode>
-          <label for="postalCode">Postal Code</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label-group">
-          <input formControlName="street" type="text" id="street" class="form-control" placeholder="Street" required="required" #street>
-          <label for="street">Street</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label-group">
-          <input formControlName="number" type="text" id="number" class="form-control" placeholder="Number" required="required" #number>
-          <label for="number">Number</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label-group">
-          <input formControlName="extNumber" type="text" id="extNumber" class="form-control" placeholder="Ext. Number" required="required" #extNumber>
-          <label for="extNumber">Ext. Number</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-label-group">
-          <input formControlName="colony" type="text" id="colony" class="form-control" placeholder="Colony" required="required" #colony>
-          <label for="colony">Colony</label>
-        </div>
-      </div>
-      <button class="btn" routerLink="/providers/list">Back</button>
-      <button class="btn btn-primary " type="submit" (click)="addProvider(name.value, contact.value, telephoneNumber.value, email.value, rfc.value, postalCode.value, street.value, number.value, extNumber.value, colony.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+
+      <button class="btn" routerLink="/products/list">Back</button>
+      <button class="btn btn-primary " type="submit" (click)="addProduct(name.value, unities.value, category.value, description.value, price.value )" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
     </form>
   </div>
 

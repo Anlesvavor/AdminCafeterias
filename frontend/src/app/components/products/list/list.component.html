@@ -35,8 +35,8 @@
           <td>
             {{u._name}}
           </td>
-          <td *ngFor="let v of u.unities">
-            {{v._name}},
+          <td>
+            <ul  *ngFor="let v of u._unities">{{v}},</ul>
           </td>
           <td>
             {{u._category}}

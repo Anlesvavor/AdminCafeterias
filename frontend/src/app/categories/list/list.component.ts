@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {CategoriesService} from "../../categories.service";
 import {Category} from "../../category.model";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,6 @@ import {Category} from "../../category.model";
   styleUrls: ['./list.component.css']
 })
 export class CategoriesListComponent implements OnInit {
-
 
   categories: any=[];
 

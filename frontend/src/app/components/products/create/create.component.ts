@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { Product } from "../../../product.model";
 import { ProductService } from "../../../product.service";
 import {MatSnackBar} from "@angular/material";
+import {CategoriesService} from "../../../categories.service";
+import {Category} from "../../../category.model";
 
 
 
@@ -16,8 +18,9 @@ import {MatSnackBar} from "@angular/material";
 })
 export class ProductsCreateComponent implements OnInit {
   createForm : FormGroup;
+  categories: any=[];
 
-  constructor(private productService: ProductService, private fb: FormBuilder, private router:Router) {
+  constructor(private categoriesService : CategoriesService, private productService: ProductService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
       name: ['', Validators.required],
       unities: ['', Validators.required],
@@ -27,6 +30,17 @@ export class ProductsCreateComponent implements OnInit {
     });
   }
 
+  fetchCategories() {
+    this.categoriesService
+      .getCategories()
+      .subscribe((data: Category[]) => {
+        this.categories = data;
+        this.categories = this.categories.data.docs;
+        console.log('Data requested ...');
+        console.log(this.categories);
+      })
+  }
+
   addProduct(name, unities, category, description, price) {
     this.productService.addProduct(name, unities, category, description, price).subscribe(() => {
       this.router.navigate(['products/list']);
@@ -34,6 +48,7 @@ export class ProductsCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchCategories();
   }
 
 }
