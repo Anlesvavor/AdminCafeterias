@@ -1,0 +1,58 @@
+
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Add a Requisitions</div>
+  <div class="card-body">
+    <form [formGroup]="createForm">
+      <div class="form-group">
+        <div class="form-label-group">
+          <input formControlName="diner" type="text" id="diner" class="form-control" placeholder="Diner" required="required" #diner>
+          <label for="diner">Diner</label>
+        </div>
+      </div>
+      <form #formRef="ngForm">
+        <div *ngFor="let o of orders; let i = index" class="col-sm-3">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="orders[i].product" name="name{{i}}" class="form-control" #name="ngModel" required />
+            <input type="text" [(ngModel)]="orders[i].quantity" name="name{{i}}" class="form-control" #name="ngModel" required />
+            <input type="text" [(ngModel)]="orders[i].unit" name="name{{i}}" class="form-control" #name="ngModel" required />
+            <input type="text" [(ngModel)]="orders[i].provider" name="name{{i}}" class="form-control" #name="ngModel" required />
+
+            <!--<p [hidden]="words2[in].value">Field is required</p>
+            {{formRef.form.name1}}-->
+          </div>
+          <br />
+        </div>
+        <button [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
+      </form>
+      <br />
+      <br />
+      <div class="form-group">
+        <div class="form-label-group">
+          <input formControlName="description" type="text" id="description" class="form-control" placeholder="Description" required="required" #description>
+          <label for="description">Description</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label-group">
+          <input formControlName="price" type="number" id="price" class="form-control" placeholder="Price" required="required" #price>
+          <label for="price">Price</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label-group">
+          <!--<label for="category">Category</label>-->
+          <select formControlName="provider" id="provider" class="form-control" required="required"  #provider>
+            <option *ngFor="let p of providers" value="{{p._name}}" >
+              {{p._name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn" routerLink="/requisitionss/list">Back</button>
+      <button class="btn btn-primary " type="submit" (click)="addRequisitions(name.value, unities.value, category.value, description.value, price.value, provider.value )" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+    </form>
+  </div>
+
+</div>
+

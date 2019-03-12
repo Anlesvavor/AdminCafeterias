@@ -3,5 +3,6 @@ export interface Product {
   unities: [],
   category: String,
   description: String,
-  price: Number
+  price: Number,
+  provider: []
 }
