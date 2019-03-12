@@ -45,6 +45,8 @@ import { UnitService } from './unit.service';
 import { CategoriesEditComponent } from './components/categories/edit/edit.component';
 import { CategoriesListComponent } from './components/categories/list/list.component';
 import { CategoriesCreateComponent } from './components/categories/create/create.component';
+import { DinnersEditComponent } from './components/dinners/edit/edit.component';
+import { DinnersListComponent } from './components/dinners/list/list.component';
 
 
 const routes: Routes = [
@@ -67,6 +69,8 @@ const routes: Routes = [
   { path: 'categories/list', component: CategoriesListComponent},
 
   { path: 'dinners/create', component: DinnersCreateComponent},
+  { path: 'dinners/edit', component: DinnersEditComponent},
+  { path: 'dinners/list', component: DinnersListComponent},
 
   { path: 'products/create', component: ProductsCreateComponent},
   { path: 'products/edit/:id', component: ProductsEditComponent},
@@ -94,6 +98,8 @@ const routes: Routes = [
     ProductsListComponent,
     ProductsCreateComponent,
     DinnersCreateComponent,
+    DinnersEditComponent,
+    DinnersListComponent,
     CategoriesEditComponent,
     CategoriesListComponent,
     CategoriesCreateComponent

@@ -1,0 +1,45 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Dinners
+  </div>
+
+  <div class="card-body">
+    <button routerLink="/dinners/create" class="btn btn-primary">Add Dinner</button>
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>User</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of dinners">
+            <td>
+              {{d._name}}
+            </td>
+            <td>
+              {{d._user}}
+            </td>
+            <td>
+              {{d._description}}
+            </td>
+            <td>
+              <button routerLink="/dinners/edit/{{d._id}}" class="btn btn-warning">Edit</button>
+
+              <button (click)="dropDinner(d._id)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
