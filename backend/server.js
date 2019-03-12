@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 
 
-mongoose.connect('mongodb://localhost:27017/users');
+mongoose.connect('mongodb://admin:admin1234@ds015995.mlab.com:15995/admin-cafeterias');
 
 const connection = mongoose.connection;
 
