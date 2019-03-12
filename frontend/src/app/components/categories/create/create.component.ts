@@ -24,7 +24,7 @@ export class CategoriesCreateComponent implements OnInit {
     console.log("tssss");
     console.log(name);
     this.categoriesService.addCategory(name).subscribe(() => {
-      this.router.navigate(['/list']);
+      this.router.navigate(['categories/list']);
     });
   }
 
