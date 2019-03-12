@@ -16,6 +16,8 @@ import { UserService } from "../../../user.service";
 })
 export class DinnersEditComponent implements OnInit {
 
+  id: String;
+  dinner : any={};
   updateForm : FormGroup;
   users: any=[];
 
@@ -45,10 +47,10 @@ export class DinnersEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.dinnerService.getDinnerById(this.id).subscribe(res => {
-        this.user = res;
-        this.updateForm.get('name').setValue(this.user.data._name);
-        this.updateForm.get('user').setValue(this.user.data._user);
-        this.updateForm.get('description').setValue(this.user.data._description);
+        this.dinner = res;
+        this.updateForm.get('name').setValue(this.dinner.data._name);
+        this.updateForm.get('user').setValue(this.dinner.data._user);
+        this.updateForm.get('description').setValue(this.dinner.data._description);
       });
     });
   }
