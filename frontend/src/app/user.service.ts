@@ -39,11 +39,10 @@ export class UserService {
     return this.http.post(`${this.uri}/users/new`, user);
   }
 
-  updateUser(id, email, password, firstName, lastName, role) {
+  updateUser(id, email, firstName, lastName, role) {
     console.log("tic");
     const user = {
       email: email,
-      password: password,
       firstName: firstName,
       lastName: lastName,
       role: role

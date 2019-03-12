@@ -37,11 +37,11 @@ export class UserEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.userService.getUserById(this.id).subscribe(res => {
-        this.user = res.data;
-        this.updateForm.get('firstName').setValue(this.user._firstName);
-        this.updateForm.get('lastName').setValue(this.user._lastName);
-        this.updateForm.get('email').setValue(this.user._email);
-        this.updateForm.get('role').setValue(this.user._role);
+        this.user = res;
+        this.updateForm.get('firstName').setValue(this.user.data._firstName);
+        this.updateForm.get('lastName').setValue(this.user.data._lastName);
+        this.updateForm.get('email').setValue(this.user.data._email);
+        this.updateForm.get('role').setValue(this.user.data._role);
       });
     });
   }
