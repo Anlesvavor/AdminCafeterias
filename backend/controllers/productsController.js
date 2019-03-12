@@ -16,7 +16,8 @@ function create(req, res, next) {
       _unities: req.body.unities,
       _category: req.body.category,
       _description: req.body.description,
-      _price: req.body.price
+      _price: req.body.price,
+      _provider: req.body.provider
     });
 
     product.save()
@@ -41,8 +42,8 @@ function listAll(req, res, next) {
     const options = {
         page: page,
         limit: 20,
-        select: '_name _unities _category _description _price'
-    }
+        select: '_name _unities _category _description _price _provider'
+    };
 
     Product.paginate({}, options)
         .then(obj => {
@@ -81,6 +82,7 @@ function update(req, res, next) {
             obj.category = req.body.category ? req.body.category : obj.category;
             obj.description = req.body.description ? req.body.description : obj.description;
             obj.price = req.body.price ? req.body.price : obj.price;
+            obj.provider = req.body.provider ? req.body.provider : obj.provider;
 
             obj.save()
                 .then(obj => {
@@ -120,4 +122,4 @@ module.exports = {
     listAll,
     update,
     drop
-}
+};

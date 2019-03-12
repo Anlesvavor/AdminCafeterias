@@ -7,17 +7,19 @@ let schema = new Schema({
   _unities: [],
   _category: String,
   _description: String,
-  _price: Number
+  _price: Number,
+  _provider : []
 });
 
 class Product{
 
-  constructor(name, unities, category, description, price){
+  constructor(name, unities, category, description, price, provider){
     this._name = name;
     this._unities = unities;
     this._category = category;
     this._description = description;
     this._price = price;
+    this._provider = provider;
   }
 
   get name(){
@@ -59,6 +61,15 @@ class Product{
   set price(v){
     this._price = v;
   }
+
+
+    get provider() {
+        return this._provider;
+    }
+
+    set provider(value) {
+        this._provider = value;
+    }
 }
 
 schema.plugin(mongoosePaginate);
