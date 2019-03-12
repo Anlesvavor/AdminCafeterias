@@ -69,7 +69,7 @@ const routes: Routes = [
   { path: 'categories/list', component: CategoriesListComponent},
 
   { path: 'dinners/create', component: DinnersCreateComponent},
-  { path: 'dinners/edit', component: DinnersEditComponent},
+  { path: 'dinners/edit/:id', component: DinnersEditComponent},
   { path: 'dinners/list', component: DinnersListComponent},
 
   { path: 'products/create', component: ProductsCreateComponent},

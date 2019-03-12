@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, Validators, Validator} from "@angular/forms";
 import { Router }  from '@angular/router';
 
 import { DinnerService } from "../../../dinner.service";
+import { Dinner } from "../../../dinner.model";
+
+import { User } from "../../../user.model";
+import { UserService } from "../../../user.service";
 
 @Component({
   selector: 'app-create',
@@ -12,8 +16,9 @@ import { DinnerService } from "../../../dinner.service";
 export class DinnersCreateComponent implements OnInit {
 
   createForm : FormGroup;
+  users: any=[];
 
-  constructor(private dinnerService: DinnerService, private fb: FormBuilder, private router:Router) {
+  constructor(private userService : UserService, private dinnerService: DinnerService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
       name: ['', Validators.required],
       user: ['', Validators.required],
@@ -27,7 +32,17 @@ export class DinnersCreateComponent implements OnInit {
     });
   }
 
+  fetchUsers() {
+    this.userService
+      .getUsers()
+      .subscribe((data: User[]) => {
+        this.users = data;
+        this.users = this.users.data.docs;
+      })
+  }
+
   ngOnInit() {
+    this.fetchUsers();
   }
 
 }

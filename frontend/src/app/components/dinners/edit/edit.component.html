@@ -1,31 +1,34 @@
 <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Register a Dinner</div>
+      <div class="card-header">Update a Dinner</div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="updateForm">
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                  <label for="firstName">Name</label>
+                  <input formControlName="name" type="text" id="name" class="form-control" placeholder="Name" required="required" autofocus="autofocus" #name>
+                  <label for="name">Name</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-                  <label for="lastName">User</label>
+                  <select formControlName="user" id="user" class="form-control" required="required" #user>
+                    <option *ngFor="let u of users">
+                      {{u._id}}
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-              <label for="inputEmail">Description</label>
+              <input formControlName="description" type="email" id="description" class="form-control" placeholder="Description" required="required" #description>
+              <label for="description">Description</label>
             </div>
           </div>
           <button class="btn" routerLink="/dinners/list">Back</button>
-          <button class="btn btn-primary " type="submit" (click)="addUser(email.value, password.value, firstName.value, lastName.value, role.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+          <button class="btn btn-primary " type="submit" (click)="updateDinner(name.value, user.value, description.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
         </form>
       </div>
     </div>

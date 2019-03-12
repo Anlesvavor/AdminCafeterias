@@ -12,8 +12,11 @@
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input formControlName="user" type="text" id="user" class="form-control" placeholder="User" required="required" #user>
-                  <label for="user">User</label>
+                  <select formControlName="user" id="user" class="form-control" required="required" #user>
+                    <option *ngFor="let u of users">
+                      {{u._id}}
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
