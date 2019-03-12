@@ -47,6 +47,10 @@ import { CategoriesListComponent } from './components/categories/list/list.compo
 import { CategoriesCreateComponent } from './components/categories/create/create.component';
 import { DinnersEditComponent } from './components/dinners/edit/edit.component';
 import { DinnersListComponent } from './components/dinners/list/list.component';
+import { RequisitionsCreateComponent } from './components/requisitions/create/create.component';
+import { RequisitionsEditComponent } from './components/requisitions/edit/edit.component';
+import { RequisitionsListComponent } from './components/requisitions/list/list.component';
+import { RequisitionsDetailComponent } from './components/requisitions/detail/detail.component';
 
 
 const routes: Routes = [
@@ -76,6 +80,11 @@ const routes: Routes = [
   { path: 'products/edit/:id', component: ProductsEditComponent},
   { path: 'products/list', component: ProductsListComponent},
 
+  { path: 'requisitions/create', component: RequisitionsCreateComponent},
+  { path: 'requisitions/edit/:id', component: RequisitionsEditComponent},
+  { path: 'requisitions/list', component: RequisitionsListComponent},
+  { path: 'requisitions/details/:id', component: RequisitionsDetailComponent},
+
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
 
@@ -102,7 +111,11 @@ const routes: Routes = [
     DinnersListComponent,
     CategoriesEditComponent,
     CategoriesListComponent,
-    CategoriesCreateComponent
+    CategoriesCreateComponent,
+    RequisitionsCreateComponent,
+    RequisitionsEditComponent,
+    RequisitionsListComponent,
+    RequisitionsDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@
 <div class="card card-register mx-auto mt-5">
   <div class="card-header">Add a Product</div>
   <div class="card-body">
-    <form [formGroup]="createForm">
+    <form [formGroup]="updateForm">
       <div class="form-group">
         <div class="form-label-group">
           <input formControlName="name" type="text" id="name" class="form-control" placeholder="Name" required="required" #name>
@@ -35,12 +35,22 @@
       <div class="form-group">
         <div class="form-label-group">
           <input formControlName="price" type="number" id="price" class="form-control" placeholder="Price" required="required" #price>
-          <label for="price">RFC</label>
+          <label for="price">Price</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label-group">
+          <!--<label for="category">Category</label>-->
+          <select formControlName="provider" id="provider" class="form-control" required="required"  #provider>
+            <option *ngFor="let p of providers" value="{{p._name}}" >
+              {{p._name}}
+            </option>
+          </select>
         </div>
       </div>
 
       <button class="btn" routerLink="/products/list">Back</button>
-      <button class="btn btn-primary " type="submit" (click)="addProduct(name.value, contact.value, telephoneNumber.value, email.value, rfc.value, postalCode.value, street.value, number.value, extNumber.value, colony.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+      <button class="btn btn-primary " type="submit" (click)="updateProduct(name.value, unities.value, category.value, description.value, price.value, provider.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
     </form>
   </div>
 

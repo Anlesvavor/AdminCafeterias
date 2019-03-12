@@ -5,11 +5,11 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 let schema = new Schema({
     _diner : String,
     _date : Date,
-    _orders : {},
+    _orders : [],
     _status : String,
     _approvedBy : String,
     _dateApproved : Date,
-    _requisitionOrig : {}
+    _requisitionOrig : []
 
 });
 

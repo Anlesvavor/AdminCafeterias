@@ -5,6 +5,10 @@ import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 import { ProductService } from "../../../product.service";
 import { Product } from "../../../product.model";
 import {MatSnackBar} from "@angular/material";
+import {Category} from "../../../category.model";
+import {Provider} from "../../../provider.model";
+import {CategoriesService} from "../../../categories.service";
+import {ProviderService} from "../../../provider.service";
 
 @Component({
   selector: 'app-products-edit',
@@ -15,9 +19,11 @@ export class ProductsEditComponent implements OnInit {
 
   id: String;
   product: any = {};
+  providers: any = [];
+  categories: any = [];
   updateForm: FormGroup;
 
-  constructor(private productService: ProductService, private router:Router, private route:ActivatedRoute, private snackBar: MatSnackBar, private fb:FormBuilder) {
+  constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private productService: ProductService, private router:Router, private route:ActivatedRoute, private snackBar: MatSnackBar, private fb:FormBuilder) {
     this.createForm();
   }
 
@@ -27,11 +33,32 @@ export class ProductsEditComponent implements OnInit {
       unities: '',
       category:  ['', Validators.required],
       description:  ['', Validators.required],
-      price:  ['', Validators.required]
+      price:  ['', Validators.required],
+      provider: ''
     });
   }
 
+  fetchData() {
+    this.categoriesService
+      .getCategories()
+      .subscribe((data: Category[]) => {
+        this.categories = data;
+        this.categories = this.categories.data.docs;
+        console.log('Data requested ...');
+        console.log(this.categories);
+      });
+
+    this.providersService
+      .getProviders()
+      .subscribe((data : Provider[]) => {
+        this.providers = data;
+        this.providers = this.providers.data.docs;
+      });
+  }
+
+
   ngOnInit() {
+    this.fetchData();
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.productService.getProductById(this.id).subscribe(res => {
@@ -41,13 +68,13 @@ export class ProductsEditComponent implements OnInit {
         this.updateForm.get('category').setValue(this.product.category);
         this.updateForm.get('description').setValue(this.product.description);
         this.updateForm.get('price').setValue(this.product.price);
-
+        this.updateForm.get('provider').setValue(this.product.provider);
       });
     });
   }
 
-  updateProduct(name, unities, category, description, price) {
-    this.productService.updateProduct(this.id, name, unities, category, description, price).subscribe(() => {
+  updateProduct(name, unities, category, description, price, provider) {
+    this.productService.updateProduct(this.id, name, unities, category, description, price, provider).subscribe(() => {
       this.router.navigate([`/products/list`]);
     });
   }
