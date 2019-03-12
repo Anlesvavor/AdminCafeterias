@@ -13,7 +13,7 @@ import { UserService } from '../../../user.service';
 export class UserListComponent implements OnInit {
 
   users: any=[];
-  dislayedColumns = ['_email', '_password', '_firstName', '_lastName', '_role', '_actions'];
+  displayedColumns = ['_email', '_password', '_firstName', '_lastName', '_role', '_actions'];
 
   constructor(private userService: UserService, private router: Router) {
 

@@ -37,18 +37,17 @@ export class UserEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.userService.getUserById(this.id).subscribe(res => {
-        this.user = res;
-        this.updateForm.get('email').setValue(this.user.email);
-        this.updateForm.get('password').setValue(this.user.password);
-        this.updateForm.get('firstName').setValue(this.user.firstName);
-        this.updateForm.get('lastName').setValue(this.user.lastName);
-        this.updateForm.get('role').setValue(this.user.role);
+        this.user = res.data;
+        this.updateForm.get('firstName').setValue(this.user._firstName);
+        this.updateForm.get('lastName').setValue(this.user._lastName);
+        this.updateForm.get('email').setValue(this.user._email);
+        this.updateForm.get('role').setValue(this.user._role);
       });
     });
   }
 
-  updateUser(email, password, firstName, lastName, role) {
-    this.userService.updateUser(this.id, email, password, firstName, lastName, role).subscribe(() => {
+  updateUser(firstName, lastName, email, role) {
+    this.userService.updateUser(this.id, firstName, lastName, email, role).subscribe(() => {
       this.router.navigate([`/users/list`]);
     });
   }

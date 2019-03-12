@@ -27,9 +27,18 @@
             <label for="inputEmail">Email address</label>
           </div>
         </div>
-        zz
-        <button routerLink="/users/list">Back</button>
-        <button type="submit" (click)="updateUser(email.value, password.value, firstName.value, lastName.value, role.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-label-group">
+                <input formControlName="role" type="text" id="role" class="form-control" placeholder="Role" required="required" #role>
+                <label for="firstName">Role</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn" routerLink="/users/list">Back</button>
+        <button class="btn btn-primary" type="submit" (click)="updateUser(firstName.value, lastName.value, email.value, role.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
       </form>
     </div>
   </div>
