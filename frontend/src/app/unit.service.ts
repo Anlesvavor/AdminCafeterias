@@ -25,7 +25,7 @@ export class UnitService {
   }
 
   getUnitById(id) {
-    return this.http.get(`${this.uri}/units/show/${name}`);
+    return this.http.get(`${this.uri}/units/show/${id}`);
   }
 
   addUnit(name) {
@@ -35,13 +35,13 @@ export class UnitService {
     return this.http.post(`${this.uri}/units/new`, unit);
   }
 
-  updateUnit(name) {
+  updateUnit(id, name) {
     console.log("tic");
     const unit = {
       name: name
     };
     console.log("toc");
-    return this.http.put(`${this.uri}/units/edit/${name}`, unit);
+    return this.http.put(`${this.uri}/units/edit/${id}`, unit);
   }
 
   dropUnit(id) {
