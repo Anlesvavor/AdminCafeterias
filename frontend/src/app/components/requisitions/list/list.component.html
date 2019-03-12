@@ -13,26 +13,20 @@
         <thead>
         <tr>
           <th>Diner</th>
-          <th>Date</th>
+          <th>Order</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
         </thead>
-        <tfoot>
-        <tr>
-          <th>Diner</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-        </tfoot>
         <tbody>
         <tr *ngFor="let u of requisitions">
           <td>
-            {{u._dinner}}
+            {{u._diner}}
           </td>
           <td>
-            {{u._date}}
+            <ul *ngFor="let w of u._orders">
+              {{w.product}}
+            </ul>
           </td>
           <td>
             {{u._status}}
