@@ -30,7 +30,7 @@ export class CategoriesEditComponent implements OnInit {
       this.id = params.id;
       this.categoriesService.getCategoryById(this.id).subscribe(res => {
         this.category = res;
-        this.updateForm.get('name').setValue(this.category.name);
+        this.updateForm.get('name').setValue(this.category.data._name);
       });
     });
   }

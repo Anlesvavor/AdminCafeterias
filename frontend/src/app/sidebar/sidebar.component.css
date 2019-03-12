@@ -102,4 +102,7 @@
     .sidebar.toggled .nav-item.dropdown .dropdown-toggle::after {
         display: none;
     }
+    .dropdown-item {
+      margin-left: 15px;
+    }
 }

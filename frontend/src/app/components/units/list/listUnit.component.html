@@ -16,19 +16,13 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Actions</th>
-          </tr>
-        </tfoot>
         <tbody>
           <tr *ngFor="let u of units">
             <td>
               {{u._name}}
             </td>
             <td>
-              <button routerLink="/units/edit/{{u._name}}" class="btn btn-warning">Edit</button>
+              <button routerLink="/units/edit/{{u._id}}" class="btn btn-warning">Edit</button>
 
               <button (click)="dropUnit(u._id)" class="btn btn-danger">Delete</button>
             </td>

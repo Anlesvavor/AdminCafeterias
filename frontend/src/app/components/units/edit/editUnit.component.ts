@@ -33,14 +33,15 @@ export class EditUnitComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.unitService.getUnitById(this.id).subscribe(res => {
+        console.log(res);
         this.unit = res;
-        this.updateForm.get('email').setValue(this.unit.name);
+        this.updateForm.get('name').setValue(this.unit.data._name);
       });
     });
   }
 
   updateUnit(name) {
-    this.unitService.updateUnit(name).subscribe(() => {
+    this.unitService.updateUnit(this.id, name).subscribe(() => {
       this.router.navigate([`/units/list`]);
     });
   }
