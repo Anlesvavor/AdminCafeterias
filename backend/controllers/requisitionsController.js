@@ -16,7 +16,8 @@ function create(req, res, next) {
         _orders: req.body.orders,
         _status: req.body.status,
         _approvedBy: req.body._approvedBy,
-        _dateApproved: req._dateApproved
+        _dateApproved: req._dateApproved,
+        _requisitionOrig: req._requisitionOrig
     });
 
     requisition.save()
@@ -41,7 +42,7 @@ function listAll(req, res, next) {
     const options = {
         page: page,
         limit: 20,
-        select: '_diner _date _orders _status _approvedBy _dateApproved'
+        select: '_diner _date _orders _status _approvedBy _dateApproved _requisitionOrig'
     };
 
     Requisition.paginate({}, options)
@@ -81,6 +82,7 @@ function update(req, res, next) {
             obj.status = req.body.status ? req.body.status : obj.status;
             obj.approvedBy = req.body.approvedBy ? req.body.approvedBy : obj.approvedBy;
             obj.dateApproved = req.body.dateApproved ? req.body.dateApproved : obj.dateApproved;
+            obj.requisitionOrig = req.body.requisitionOrig ? req.body.requisitionOrig : obj.requisitionOrig;
 
             obj.save()
                 .then(obj => {

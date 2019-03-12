@@ -5,22 +5,24 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 let schema = new Schema({
     _diner : String,
     _date : Date,
-    _orders : [],
+    _orders : {},
     _status : String,
     _approvedBy : String,
     _dateApproved : Date,
+    _requisitionOrig : {}
 
 });
 
 class Requisition{
 
-    constructor(diner, orders, status, approvedBy, dateApproved){
+    constructor(diner, orders, status, approvedBy, dateApproved, requisitionOrig){
         this._diner = diner;
         this._date = new Date();
         this._orders = orders;
         this._status = status;
         this._approvedBy = approvedBy;
         this._dateApproved = dateApproved;
+        this._requisitionOrig = requisitionOrig;
     }
 
 
@@ -68,8 +70,15 @@ class Requisition{
         return this._date;
     }
 
+    get requisitionOrig() {
+        return this._requisitionOrig;
+    }
+
+    set requisitionOrig(value) {
+        this._requisitionOrig = value;
+    }
 }
 
 schema.plugin(mongoosePaginate);
-schema.loadClass(Requistion);
+schema.loadClass(Requisition);
 module.exports = mongoose.model('Requisition', schema);
