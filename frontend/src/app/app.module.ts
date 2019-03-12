@@ -37,7 +37,8 @@ import { ProductsListComponent } from './components/products/list/list.component
 import { ProductsCreateComponent } from './components/products/create/create.component';
 
 import { DinnersCreateComponent } from './components/dinners/create/create.component';
-
+import { DinnersEditComponent } from './components/dinners/edit/edit.component';
+import { DinnersListComponent } from './components/dinners/list/list.component';
 import { ListUnitComponent } from './components/units/list/listUnit.component';
 import { CreateUnitComponent } from './components/units/create/createUnit.component';
 import { EditUnitComponent } from './components/units/edit/editUnit.component';
@@ -45,12 +46,13 @@ import { UnitService } from './unit.service';
 import { CategoriesEditComponent } from './components/categories/edit/edit.component';
 import { CategoriesListComponent } from './components/categories/list/list.component';
 import { CategoriesCreateComponent } from './components/categories/create/create.component';
-import { DinnersEditComponent } from './components/dinners/edit/edit.component';
-import { DinnersListComponent } from './components/dinners/list/list.component';
 import { RequisitionsCreateComponent } from './components/requisitions/create/create.component';
 import { RequisitionsEditComponent } from './components/requisitions/edit/edit.component';
 import { RequisitionsListComponent } from './components/requisitions/list/list.component';
 import { RequisitionsDetailComponent } from './components/requisitions/detail/detail.component';
+import { RolesListComponent } from './components/roles/list/list.component';
+import { RolesEditComponent } from './components/roles/edit/edit.component';
+import { RolesCreateComponent } from './components/roles/create/create.component';
 
 
 const routes: Routes = [
@@ -79,6 +81,10 @@ const routes: Routes = [
   { path: 'products/create', component: ProductsCreateComponent},
   { path: 'products/edit/:id', component: ProductsEditComponent},
   { path: 'products/list', component: ProductsListComponent},
+
+  { path: 'roles/create', component: RolesCreateComponent},
+  { path: 'roles/edit/:id', component: RolesEditComponent},
+  { path: 'roles/list', component: RolesListComponent},
 
   { path: 'requisitions/create', component: RequisitionsCreateComponent},
   { path: 'requisitions/edit/:id', component: RequisitionsEditComponent},
@@ -115,7 +121,10 @@ const routes: Routes = [
     RequisitionsCreateComponent,
     RequisitionsEditComponent,
     RequisitionsListComponent,
-    RequisitionsDetailComponent
+    RequisitionsDetailComponent,
+    RolesListComponent,
+    RolesEditComponent,
+    RolesCreateComponent
   ],
   imports: [
     BrowserModule,

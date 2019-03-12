@@ -1,0 +1,25 @@
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Update Role</div>
+  <div class="card-body">
+    <form [formGroup]="updateForm">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input formControlName="name" type="text" id="name" class="form-control" placeholder="Name" required="required" autofocus="autofocus" #name>
+              <label for="name">{{role._name}}</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input formControlName="value" type="number" id="value" class="form-control" placeholder="Value" required="required" #value>
+              <label for="value">{{role._value}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn" routerLink="/roles/list">Back</button>
+      <button class="btn btn-primary" type="submit" (click)="updateRole(name.value, value.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary" >Save</button>
+    </form>
+  </div>
+</div>

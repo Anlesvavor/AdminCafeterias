@@ -11,7 +11,7 @@ export class CreateUnitComponent implements OnInit {
   createForm: FormGroup;
   constructor(private unitService: UnitService, private fb: FormBuilder, private router: Router) {
     this.createForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', Validators.required]
     });
   }
   addUnit(name) {

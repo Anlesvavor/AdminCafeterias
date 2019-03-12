@@ -1,0 +1,37 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Roles
+  </div>
+
+  <div class="card-body">
+    <button routerLink="/roles/create" class="btn btn-primary">Add Role</button>
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of roles">
+            <td>
+              {{r._name}}
+            </td>
+            <td>
+              {{r._value}}
+            </td>
+            <td>
+              <button routerLink="/roles/edit/{{r._id}}" class="btn btn-warning">Edit</button>
+              <button (click)="dropRole(r._id)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
