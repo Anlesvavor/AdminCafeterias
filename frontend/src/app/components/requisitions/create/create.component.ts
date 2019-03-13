@@ -5,6 +5,14 @@ import {Category} from "../../../category.model";
 import {Router} from "@angular/router";
 import {CategoriesService} from "../../../categories.service";
 import {Order} from "../../../order.model";
+import {ProviderService} from "../../../provider.service";
+import {Provider} from "../../../provider.model";
+import {ProductService} from "../../../product.service";
+import {Product} from "../../../product.model";
+import {UnitService} from "../../../unit.service";
+import {Unit} from "../../../unit.model";
+import {DinnerService} from "../../../dinner.service";
+import {Dinner} from "../../../dinner.model";
 
 @Component({
   selector: 'app-create',
@@ -14,16 +22,20 @@ import {Order} from "../../../order.model";
 export class RequisitionsCreateComponent implements OnInit {
   createForm : FormGroup;
   categories: any=[];
+  providers: any = [];
   orders : any = [];
+  products : any = [];
+  unities : any = [];
+  dinners : any = [];
 
-  constructor(private categoriesService : CategoriesService, private requisitionService: RequisitionsService, private fb: FormBuilder, private router:Router) {
+  constructor(private dinnersService : DinnerService, private unitiesService : UnitService, private productsService : ProductService, private providersService : ProviderService, private categoriesService : CategoriesService, private requisitionService: RequisitionsService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
-      diner: ['', Validators.required],
-      orders:  ['', Validators.required]
+      diner: '',
+      provider: ''
     });
   }
 
-  fetchCategories() {
+  fetchData() {
     this.categoriesService
       .getCategories()
       .subscribe((data: Category[]) => {
@@ -31,29 +43,56 @@ export class RequisitionsCreateComponent implements OnInit {
         this.categories = this.categories.data.docs;
         console.log('Data requested ...');
         console.log(this.categories);
-      })
+      });
+    this.providersService
+      .getProviders()
+      .subscribe((data : Provider[]) => {
+        this.providers = data;
+        this.providers = this.providers.data.docs;
+      });
+    this.productsService
+      .getProducts()
+      .subscribe((data: Product[]) => {
+        this.products = data;
+        this.products = this.products.data.docs;
+      });
+    this.unitiesService
+      .getUnits()
+      .subscribe((data: Unit[]) => {
+        this.unities = data;
+        this.unities = this.unities.data.docs;
+      });
+    this.dinnersService
+      .getDinners()
+      .subscribe((data: Dinner[]) => {
+        this.dinners = data;
+        this.dinners = this.dinners.data.docs;
+      });
   }
 
   add() {
     this.orders.push(
       {
-        "product" : "",
+        "product" : {},
         "quantity" : "",
-        "unit" : "",
+        "unit" : {},
         "provider" : ""
       }
       );
     console.log(this.orders);
   }
 
-  addRequisition(diner, orders) {
-    this.requisitionService.addRequisition(diner, orders).subscribe(() => {
+  addRequisition(diner) {
+    this.requisitionService.addRequisition(diner, this.orders).subscribe(() => {
       this.router.navigate(['requisitions/list']);
     });
   }
 
   ngOnInit() {
-    this.fetchCategories();
+    this.fetchData();
   }
 
+  fetchProductData(value: string) {
+
+  }
 }

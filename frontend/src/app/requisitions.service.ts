@@ -31,8 +31,12 @@ export class RequisitionsService {
     const requisition = {
       diner: diner,
       orders : orders,
-      date : new Date()
-    };
+      status: "STANDBY",
+      approvedBy : null,
+      dateApproved : null,
+      requisitionOrig : {}
+
+  };
     return this.http.post(`${this.uri}/requisitions/new`, requisition);
   }
 
