@@ -15,6 +15,7 @@ import { Role } from '../../../role.model';
 })
 export class RolesEditComponent implements OnInit {
 
+  id: String;
   role: any = {};
   updateForm: FormGroup;
 
