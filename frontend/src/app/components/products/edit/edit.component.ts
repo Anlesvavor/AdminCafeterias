@@ -77,7 +77,7 @@ export class ProductsEditComponent implements OnInit {
         this.updateForm.get('category').setValue(this.product.data._category);
         this.updateForm.get('description').setValue(this.product.data._description);
         this.updateForm.get('price').setValue(this.product.data._price);
-        this.updateForm.get('unit').setValue(this.product.data._units);
+        this.updateForm.get('units').setValue(this.product.data._units);
         this.updateForm.get('provider').setValue(this.product.data._provider);
       });
     });
