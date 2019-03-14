@@ -30,9 +30,13 @@
               {{d._description}}
             </td>
             <td>
-              <button routerLink="/dinners/edit/{{d._id}}" class="btn btn-warning">Edit</button>
+              <button routerLink="/dinners/edit/{{d._id}}" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+              </button>
 
-              <button (click)="dropDinner(d._id)" class="btn btn-danger">Delete</button>
+              <button (click)="dropDinner(d._id)" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i>
+              </button>
             </td>
           </tr>
         </tbody>

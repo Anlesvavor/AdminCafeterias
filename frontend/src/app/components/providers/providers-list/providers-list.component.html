@@ -58,9 +58,13 @@
               {{u._colony}}
             </td>
             <td>
-              <button routerLink="/providers/edit/{{u._id}}" class="btn btn-warning">Edit</button>
+              <button routerLink="/providers/edit/{{u._id}}" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+              </button>
 
-              <button (click)="dropProvider(u._id)" class="btn btn-danger">Delete</button>
+              <button (click)="dropProvider(u._id)" class="btn btn-danger">
+                  <i class="fas fa-trash-alt"></i>
+              </button>
             </td>
           </tr>
         </tbody>

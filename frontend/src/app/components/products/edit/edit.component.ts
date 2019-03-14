@@ -9,6 +9,8 @@ import {Category} from "../../../category.model";
 import {Provider} from "../../../provider.model";
 import {CategoriesService} from "../../../categories.service";
 import {ProviderService} from "../../../provider.service";
+import { UnitService } from 'src/app/unit.service';
+import { Unit } from '../../../unit.model';
 
 @Component({
   selector: 'app-products-edit',
@@ -21,20 +23,21 @@ export class ProductsEditComponent implements OnInit {
   product: any = {};
   providers: any = [];
   categories: any = [];
+  units: any = [];
   updateForm: FormGroup;
 
-  constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private productService: ProductService, private router:Router, private route:ActivatedRoute, private snackBar: MatSnackBar, private fb:FormBuilder) {
+  constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private unitService: UnitService, private productService: ProductService, private router:Router, private route:ActivatedRoute, private snackBar: MatSnackBar, private fb:FormBuilder) {
     this.createForm();
   }
 
   createForm() {
     this.updateForm = this.fb.group({
       name: ['', Validators.required],
-      unities: '',
+      units: ['', Validators],
       category:  ['', Validators.required],
       description:  ['', Validators.required],
       price:  ['', Validators.required],
-      provider: ''
+      provider: ['', Validators]
     });
   }
 
@@ -54,6 +57,13 @@ export class ProductsEditComponent implements OnInit {
         this.providers = data;
         this.providers = this.providers.data.docs;
       });
+
+      this.unitService
+      .getUnits()
+      .subscribe((data : Unit[]) =>{
+        this.units = data;
+        this.units = this.units.data.docs;
+      });
   }
 
 
@@ -63,18 +73,36 @@ export class ProductsEditComponent implements OnInit {
       this.id = params.id;
       this.productService.getProductById(this.id).subscribe(res => {
         this.product = res;
-        this.updateForm.get('name').setValue(this.product.name);
-        this.updateForm.get('unities').setValue(this.product.untiies);
-        this.updateForm.get('category').setValue(this.product.category);
-        this.updateForm.get('description').setValue(this.product.description);
-        this.updateForm.get('price').setValue(this.product.price);
-        this.updateForm.get('provider').setValue(this.product.provider);
+        this.updateForm.get('name').setValue(this.product.data._name);
+        this.updateForm.get('category').setValue(this.product.data._category);
+        this.updateForm.get('description').setValue(this.product.data._description);
+        this.updateForm.get('price').setValue(this.product.data._price);
+        this.updateForm.get('unit').setValue(this.product.data._units);
+        this.updateForm.get('provider').setValue(this.product.data._provider);
       });
     });
   }
 
-  updateProduct(name, unities, category, description, price, provider) {
-    this.productService.updateProduct(this.id, name, unities, category, description, price, provider).subscribe(() => {
+  updateProduct(name, category, description, price) {
+    let units: any=[];
+    let input_obj = document.getElementsByTagName('input');
+    for (let i = 0; i < input_obj.length; i++) {
+      // if input object is checkbox and checkbox is checked then ...
+      if (input_obj[i].type === 'checkbox' && input_obj[i].checked === true && input_obj[i].name === 'unit') {
+          // ... increase counter and concatenate checkbox value to the url string
+          units.push(input_obj[i].value);
+      }
+    }
+    let provider: any=[];
+    for (let i = 0; i < input_obj.length; i++) {
+      // if input object is checkbox and checkbox is checked then ...
+      if (input_obj[i].type === 'checkbox' && input_obj[i].checked === true && input_obj[i].name === 'provider') {
+          // ... increase counter and concatenate checkbox value to the url string
+          provider.push(input_obj[i].value);
+      }
+    }
+
+    this.productService.updateProduct(this.id, name, units, category, description, price, provider).subscribe(() => {
       this.router.navigate([`/products/list`]);
     });
   }

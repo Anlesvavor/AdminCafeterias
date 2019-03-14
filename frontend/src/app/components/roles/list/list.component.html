@@ -26,8 +26,12 @@
               {{r._value}}
             </td>
             <td>
-              <button routerLink="/roles/edit/{{r._id}}" class="btn btn-warning">Edit</button>
-              <button (click)="dropRole(r._id)" class="btn btn-danger">Delete</button>
+              <button routerLink="/roles/edit/{{r._id}}" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="dropRole(r._id)" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i>
+              </button>
             </td>
           </tr>
         </tbody>
