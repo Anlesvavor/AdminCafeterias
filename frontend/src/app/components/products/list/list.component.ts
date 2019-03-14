@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../product.service';
 import { Product } from '../../../product.model';
+import { UnitService } from '../../../unit.service';
+import { Unit } from '../../../unit.model';
 import { Router } from '@angular/router';
+import { ProviderService } from 'src/app/provider.service';
+import { Provider } from '../../../provider.model';
 
 @Component({
   selector: 'app-list',
@@ -11,12 +15,14 @@ import { Router } from '@angular/router';
 export class ProductsListComponent implements OnInit {
 
   products: any=[];
+  units: any= [];
+  providers: any=[];
   //dislayedColumns = ['_name', '_contact', 'telephoneNumber', '_email', '_rfc', '_postalCode', '_street', '_number', '_extNumber', '_colony', '_actions'];
   generateArray(obj) {
     return Object.keys(obj).map(key => {return obj[key]});
   }
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(private productService: ProductService, private providerService: ProviderService, private unitService: UnitService, private router: Router) {
 
   }
 
@@ -24,9 +30,15 @@ export class ProductsListComponent implements OnInit {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
       this.products = this.products.data.docs;
-
       console.log(this.products);
     });
+
+    this.unitService.getUnits().subscribe(units => {
+      this.units = units;
+      this.units = this.units.data.docs;
+      console.log(this.units);
+    });
+
     console.log("AQUI");
     console.log(this.products);
 
@@ -45,6 +57,20 @@ export class ProductsListComponent implements OnInit {
         console.log('Data requested ...');
         console.log(this.products);
       })
+    this.unitService
+      .getUnits()
+      .subscribe((data: Unit[]) => {
+        this.units = data;
+        this.units = this.units.data.docs;
+        console.log(this.units);
+      })
+    this.providerService
+    .getProviders()
+    .subscribe((data: Unit[]) => {
+      this.providers = data;
+      this.providers = this.providers.data.docs;
+      console.log(this.providers);
+    })
   }
 
   createProduct() {

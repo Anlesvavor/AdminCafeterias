@@ -29,11 +29,11 @@ export class ProductsCreateComponent implements OnInit {
   constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private productService: ProductService, private fb: FormBuilder, private router:Router, private unitService: UnitService) {
     this.createForm = this.fb.group ({
       name: ['', Validators.required],
-      unit: ['', Validators.required],
+      unit: ['', Validators],
       category:  ['', Validators.required],
       description:  ['', Validators.required],
       price:  ['', Validators.required],
-      provider: ['', Validators.required]
+      provider: ['', Validators]
     });
   }
 
@@ -79,7 +79,7 @@ export class ProductsCreateComponent implements OnInit {
       // if input object is checkbox and checkbox is checked then ...
       if (input_obj[i].type === 'checkbox' && input_obj[i].checked === true && input_obj[i].name === 'provider') {
           // ... increase counter and concatenate checkbox value to the url string
-          units.push(input_obj[i].value);
+          provider.push(input_obj[i].value);
       }
     }
     this.productService.addProduct(name, units, category, description, price, provider).subscribe(() => {

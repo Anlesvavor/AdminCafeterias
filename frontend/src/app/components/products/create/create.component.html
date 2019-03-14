@@ -11,14 +11,20 @@
       </div>
       <div class="form-group">
         <div class="form-label-group">
-          <tbody>
-            <tr *ngFor="let u of units">
-              <input class="form-check-input" type="checkbox" name="unit" id="unit" value="{{u._id}}" #unit>
-              <td>
-                  {{u._name}}
-              </td>
-            </tr>
-          </tbody>
+            <table class="table" id="unitTable" width="100%" cellspacing="0">
+              <thead> 
+                <tr>
+                  <th *ngFor="let u of units">{{u._name}} </th>
+                </tr> 
+              </thead>
+              <tbody>
+                <tr >
+                  <td *ngFor="let u of units">
+                    <input class="form-check-input" type="checkbox" name="unit" id="unit" value="{{u._id}}" #unit>    
+                  </td>
+                </tr>  
+              </tbody>
+            </table>
           <!--<select formControlName="unit" id="unit" class="form-control" required="required"  #unit>
             <option *ngFor="let u of units" value="{{u._name}}" >
               {{u._name}}
@@ -51,14 +57,20 @@
       <div class="form-group">
         <div class="form-label-group">
           <!--<label for="category">Category</label>-->
-          <tbody>
-            <tr *ngFor="let p of providers">
-              <input class="form-check-input" type="checkbox" name="provider" id="provider" value="{{p._id}}" #provider>
-              <td>
-                  {{p._name}}
-              </td>
-            </tr>
-          </tbody>
+          <table class="table" id="unitTable" width="100%" cellspacing="0">
+            <thead> 
+              <tr>
+                <th *ngFor="let p of providers">{{p._name}} </th>
+              </tr> 
+            </thead>
+            <tbody>
+              <tr >
+                <td *ngFor="let p of providers">
+                  <input class="form-check-input" type="checkbox" name="provider" id="provider" value="{{p._id}}" #provider>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <button class="btn" routerLink="/products/list">Back</button>

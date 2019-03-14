@@ -27,7 +27,11 @@
             {{u._name}}
           </td>
           <td>
-            <ul  *ngFor="let v of u._unities">{{v}},</ul>
+            <ng-container *ngFor="let v of u._unities">
+              <ng-container *ngFor="let p of units">
+                <ul *ngIf="p._id==v">{{p._name}},</ul>
+              </ng-container>
+            </ng-container>
           </td>
           <td>
             {{u._category}}
