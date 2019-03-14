@@ -39,6 +39,12 @@ export class ProductsListComponent implements OnInit {
       console.log(this.units);
     });
 
+    this.providerService.getProviders().subscribe(providers => {
+      this.providers = providers;
+      this.providers = this.providers.data.docs;
+      console.log(this.providers);
+    });
+
     console.log("AQUI");
     console.log(this.products);
 

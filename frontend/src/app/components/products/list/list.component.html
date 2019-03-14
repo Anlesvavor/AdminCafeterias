@@ -43,7 +43,11 @@
             {{u._price}}
           </td>
           <td>
-            {{u._provider}}
+            <ng-container *ngFor="let v of u._provider">
+                <ng-container *ngFor="let p of providers">
+                  <ul *ngIf="p._id==v">{{p._name}},</ul>
+                </ng-container>
+              </ng-container>
           </td>
           <td>
             <button routerLink="/products/edit/{{u._id}}" class="btn btn-warning">Edit</button>
