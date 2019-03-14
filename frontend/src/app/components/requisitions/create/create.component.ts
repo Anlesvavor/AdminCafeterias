@@ -36,7 +36,7 @@ export class RequisitionsCreateComponent implements OnInit {
 
   dinerControl = new FormControl();
   productControl = new FormControl();
-  unitiesControl = new FormControl();
+  unitsControl = new FormControl();
   providerControl = new FormControl();
 
 
@@ -44,7 +44,7 @@ export class RequisitionsCreateComponent implements OnInit {
   filteredDinerOptions: Observable<string[]>;
   filteredProductOptions: Observable<string[]>;
   filteredUnitOptions: Observable<string[]>;
-  filteredProvider: Observable<string[]>;
+  filteredProviderOptions: Observable<string[]>;
   private ordersForm: any;
 
 
@@ -53,7 +53,8 @@ export class RequisitionsCreateComponent implements OnInit {
     this.createForm = this.fb.group({
       diner: this.dinerControl,
       product: this.productControl,
-      provider: ''
+      unities: this.unitsControl,
+      provider: this.providerControl
     });
   }
 
@@ -118,7 +119,7 @@ export class RequisitionsCreateComponent implements OnInit {
       {
         product : "",
         quantity : "",
-        unit : {},
+        unit : "",
         provider : ""
       }
       );
@@ -126,7 +127,7 @@ export class RequisitionsCreateComponent implements OnInit {
   }
 
   addRequisition(diner) {
-    this.requisitionService.addRequisition(diner, this.orders).subscribe(() => {
+    this.requisitionService.addRequisition(diner, this.productsByCat).subscribe(() => {
       this.router.navigate(['requisitions/list']);
     });
   }
@@ -137,19 +138,8 @@ export class RequisitionsCreateComponent implements OnInit {
     this.filteredDinerOptions = this.dinerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.dinners)));
     //this.filteredProductOptions =  this.productsInCat.map(v=> this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, v))));
     this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
-
-    console.log("vvvvvvvvvvvvvvv");
-    console.log(this.productsInCat);
-    console.log("+++++++++++++++");
-
-
-    console.log("vvvvvvvvvvvvvvv");
-    console.log(this.filteredProductOptions);
-    console.log("+++++++++++++++");
-
-    console.log("vvvvvvvvvvvvvvv");
-    console.log(this.filteredDinerOptions);
-    console.log("===============");
+    this.filteredUnitOptions = this.unitsControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.unities)));
+    this.filteredProviderOptions = this.providerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.providers)));
     //this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
   }
 

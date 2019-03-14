@@ -68,50 +68,95 @@
             <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
               <label for="product">Product</label>
               <input
+                [(ngModel)]="c.orders[i].product"
                 class="form-control col-md-12"
                 matInput
                 id="product"
                 [formControl]="productControl"
-                [matAutocomplete]="auto"
+                [matAutocomplete]="auto2"
                 required
                 #product
               >
             </div>
 
-            <mat-autocomplete #auto="matAutocomplete">
-              <ng-container *ngFor="let option of filteredProductOptions | async">
-                <mat-option *ngIf="option._category == c.category" [value]="option._name">{{option._name}}</mat-option>
+            <mat-autocomplete #auto2="matAutocomplete">
+              <ng-container *ngFor="let u of filteredProductOptions | async">
+                <mat-option *ngIf="u._category == c.category" [value]="u._name">{{u._name}}</mat-option>
               </ng-container>
             </mat-autocomplete>
 
 
             <!-- -->
+            <!--
             <label >Units</label>
             <select [(ngModel)]="c.orders[i].unit" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required >
               <option *ngFor="let u of unities" value="{{u._name}}" >
                 {{u._name}}
               </option>
             </select>
+            -->
+            <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+              <label for="unities">Units</label>
+              <input
+                [(ngModel)]="c.orders[i].unit"
+                class="form-control col-md-12"
+                matInput
+                id="unities"
+                [formControl]="unitsControl"
+                [matAutocomplete]="auto"
+                required
+                #unities
+              >
+            </div>
+
+            <mat-autocomplete #auto="matAutocomplete">
+
+                <mat-option *ngFor="let option of filteredUnitOptions | async" [value]="option._name">{{option._name}}</mat-option>
+
+            </mat-autocomplete>
+
+
 
             <label >Quantity</label>
-            <input type="number" [(ngModel)]="c.orders[i].quantity" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required />
+            <input type="number" [(ngModel)]="c.orders[i].quantity" name="name{{i}}" class="form-control col-md-12" #name="ngModel" required />
+            <!--
+                        <label >Provider</label>
+                        <div class="form-group">
+                          <div class="form-label-group">
 
-            <label >Provider</label>
-            <div class="form-group">
-              <div class="form-label-group">
-                <!--<label for="category">Category</label>-->
-                <select [(ngModel)]="c.orders[i].provider" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required #provider>
-                  <option *ngFor="let p of providers" value="{{p._name}}" >
-                    {{p._name}}
-                  </option>
-                </select>
-              </div>
+                                            <select [(ngModel)]="c.orders[i].provider" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required #provider>
+                                              <option *ngFor="let p of providers" value="{{p._name}}" >
+                                                {{p._name}}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        -->
+            <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+              <label for="provider">Provider</label>
+              <input
+                [(ngModel)]="c.orders[i].provider"
+                class="form-control col-md-12"
+                matInput
+                id="provider"
+                [formControl]="providerControl"
+                [matAutocomplete]="auto3"
+                required
+                #provider
+              >
             </div>
+
+            <mat-autocomplete #auto3="matAutocomplete">
+
+              <mat-option *ngFor="let option of filteredProviderOptions | async" [value]="option._name">{{option._name}}</mat-option>
+
+            </mat-autocomplete>
           </div>
           <br />
         </div>
         <button class="btn btn-primary " [disabled]="!formRef.form.valid" (click)="add(j)">Add Item</button>
       </form>
+        {{orders | json}}
         <br />
       </div>
       <button class="btn" routerLink="/requisitions/list">Back</button>
