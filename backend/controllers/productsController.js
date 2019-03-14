@@ -33,7 +33,7 @@ function create(req, res, next) {
                 data:[err]
             })
         })
-};
+}
 
 function listAll(req, res, next) {
 
@@ -59,6 +59,23 @@ function listAll(req, res, next) {
             });
         })
 }
+
+function listAllByCategory(req, res, next) {
+
+    Product.find({ _category: {$eq: req.params.id}}, (err, obj) => {
+        res.status(200).json({
+            errors:[],
+            data:obj
+        });
+    })
+        .catch(err => {
+            res.status(500).json({
+                errors:[{message: 'Something went wrong'}],
+                data: []
+            });
+    });
+}
+
 
 function listOne(req, res, next) {
     Product.findById(req.params.id, (err, product) => {
@@ -121,5 +138,6 @@ module.exports = {
     listOne,
     listAll,
     update,
-    drop
+    drop,
+    listAllByCategory
 };

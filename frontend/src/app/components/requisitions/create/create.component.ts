@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequisitionsService} from "../../../requisitions.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../../../category.model";
 import {Router} from "@angular/router";
 import {CategoriesService} from "../../../categories.service";
@@ -13,6 +13,9 @@ import {UnitService} from "../../../unit.service";
 import {Unit} from "../../../unit.model";
 import {DinnerService} from "../../../dinner.service";
 import {Dinner} from "../../../dinner.model";
+import {Observable} from "rxjs/index";
+import {map, startWith} from "rxjs/internal/operators";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-create',
@@ -26,13 +29,30 @@ export class RequisitionsCreateComponent implements OnInit {
   orders : any = [];
   productsByCat: any = [];
   products : any = [];
+  productsInCat: any = [];
   unities : any = [];
   dinners : any = [];
   countCategories = 0;
 
+  dinerControl = new FormControl();
+  productControl = new FormControl();
+  unitiesControl = new FormControl();
+  providerControl = new FormControl();
+
+
+
+  filteredDinerOptions: Observable<string[]>;
+  filteredProductOptions: Observable<string[]>;
+  filteredUnitOptions: Observable<string[]>;
+  filteredProvider: Observable<string[]>;
+  private ordersForm: any;
+
+
+
   constructor(private dinnersService : DinnerService, private unitiesService : UnitService, private productsService : ProductService, private providersService : ProviderService, private categoriesService : CategoriesService, private requisitionService: RequisitionsService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
-      diner: '',
+      diner: this.dinerControl,
+      product: this.productControl,
       provider: ''
     });
   }
@@ -43,19 +63,28 @@ export class RequisitionsCreateComponent implements OnInit {
       .subscribe((data: Category[]) => {
         this.categories = data;
         this.categories = this.categories.data.docs;
-        console.log('Data requested ...');
-        console.log(this.categories);
+
         this.countCategories = this.categories.length;
-        console.log(this.countCategories);
+
         for(let i = 0; i < this.countCategories; i++) {
           this.productsByCat.push(
             {
               category : this.categories[i]._name,
               orders : []
             }
-            )
+            );
+          this.productsInCat.push(
+            {
+              category: this.categories[i]._name,
+              productsAvailable: []
+            }
+            );
+          this.productsInCat[i].productsAvailable = this.productsOfCategory(this.categories[i]._name);
         }
+
+
         console.log(this.productsByCat);
+        console.log(this.productsInCat);
       });
     this.providersService
       .getProviders()
@@ -81,6 +110,7 @@ export class RequisitionsCreateComponent implements OnInit {
         this.dinners = data;
         this.dinners = this.dinners.data.docs;
       });
+
   }
 
   add(i) {
@@ -103,16 +133,61 @@ export class RequisitionsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
-    console.log(this.countCategories);
-    console.log(this.categories);
+    //this.filteredDinerOptions = this.filteredOptions(this.dinerControl, this.dinners);
+    this.filteredDinerOptions = this.dinerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.dinners)));
+    //this.filteredProductOptions =  this.productsInCat.map(v=> this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, v))));
+    this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
+
+    console.log("vvvvvvvvvvvvvvv");
+    console.log(this.productsInCat);
+    console.log("+++++++++++++++");
+
+
+    console.log("vvvvvvvvvvvvvvv");
+    console.log(this.filteredProductOptions);
+    console.log("+++++++++++++++");
+
+    console.log("vvvvvvvvvvvvvvv");
+    console.log(this.filteredDinerOptions);
+    console.log("===============");
+    //this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
   }
 
-  fetchProductData(id: string) {
+  filteredCategoriesProductsOptions(cageoryId) {
+    return this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.productsInCat[cageoryId])));
+  }
+/*
+  filteredOptions(control: FormControl,collection: any) {
+    return control.valueChanges
+                    .pipe(
+                      startWith(''),
+                      map(value => this._filter(value, collection))
+                    );
+  }
+*/
+
+  fetchProductData(id: string){
     this.productsService
       .getProductById(id)
       .subscribe((data : Product) => {
           return data;
         }
       )
+  }
+
+  productsOfCategory(category: string): any {
+    return this.productsService
+      .getProductByCategory(category)
+      .subscribe((data: any[]) => {
+        let tmp:any = data;
+        return tmp.data;
+      });
+  }
+
+  private _filter(value: string, collection: any): string[] {
+    const filterValue = value.toLowerCase();
+    return collection.filter(option =>
+      option._name.toLowerCase().includes(filterValue)
+    );
   }
 }

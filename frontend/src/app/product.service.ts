@@ -25,6 +25,9 @@ export class ProductService {
     return body || {};
   }
 
+  getProductByCategory(category: string) {
+    return this.http.get(`${this.uri}/products/getbycategory/${category}`);
+  }
 
   getProductById(id) {
     return this.http.get(`${this.uri}/products/show/${id}`);

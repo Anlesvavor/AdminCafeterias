@@ -32,9 +32,9 @@
             {{u._status}}
           </td>
           <td>
-            <button routerLink="/requisitions/edit/{{u._id}}" class="btn btn-warning">Edit</button>
+            <button routerLink="/requisitions/edit/{{u._id}}" class="btn btn-warning"><i class="fas fa-edit"></i></button>
 
-            <button (click)="dropRequisition(u._id)" class="btn btn-danger">Delete</button>
+            <button (click)="dropRequisition(u._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </td>
         </tr>
         </tbody>

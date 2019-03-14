@@ -4,6 +4,7 @@
   <div class="card-body">
     <form [formGroup]="createForm">
       <div class="form-group">
+        <!--
         <div class="form-label-group">
           <label for="diner">Diner</label>
             <select formControlName="diner" class="form-control col-md-6" id="diner" required="required" #diner>
@@ -12,6 +13,38 @@
               </option>
             </select>
         </div>
+        <span>{{Date.now()}}</span>
+        -->
+        <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+          <label for="diner">Diner</label>
+          <input
+            class="form-control col-md-12"
+            matInput
+            id="diner"
+            [formControl]="dinerControl"
+            [matAutocomplete]="auto"
+            required
+            #diner
+          >
+        </div>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredDinerOptions | async" [value]="option._name">{{option._name}}</mat-option>
+        </mat-autocomplete>
+
+        <!-- example form angular docs
+        <div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+          <input
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          >
+        </div>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option._name">{{option._name}}</mat-option>
+        </mat-autocomplete>
+        -->
       </div>
 
       <div *ngFor="let c of productsByCat; let j = index">
@@ -21,20 +54,48 @@
         <form #formRef="ngForm">
         <div *ngFor="let o of c.orders; let i = index" >
           <div class="form-group">
+<!--
             <label >Product</label>
-            <select [(ngModel)]="c.orders[i].product" name="name{{i}}" #v (change)="fetchProductData(v.value)"  class="form-control col-md-6" #name="ngModel" required >
-              <option *ngFor="let p of products" value="{{p._name}}" >
-                {{p._name}}
-              </option>
+            <select [(ngModel)]="c.orders[i].product" name="name{{i}}" #v class="form-control col-md-6" #name="ngModel" required >
+              <ng-container *ngFor="let p of products">
+                <option *ngIf="p._category == c.category"  value="{{p._name}}" >
+                  {{p._name}}
+                </option>
+              </ng-container>
             </select>
-            <label >Quantity</label>
-            <input type="number" [(ngModel)]="c.orders[i].quantity" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required />
+-->
+
+            <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+              <label for="product">Product</label>
+              <input
+                class="form-control col-md-12"
+                matInput
+                id="product"
+                [formControl]="productControl"
+                [matAutocomplete]="auto"
+                required
+                #product
+              >
+            </div>
+
+            <mat-autocomplete #auto="matAutocomplete">
+              <ng-container *ngFor="let option of filteredProductOptions | async">
+                <mat-option *ngIf="option._category == c.category" [value]="option._name">{{option._name}}</mat-option>
+              </ng-container>
+            </mat-autocomplete>
+
+
+            <!-- -->
             <label >Units</label>
             <select [(ngModel)]="c.orders[i].unit" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required >
               <option *ngFor="let u of unities" value="{{u._name}}" >
                 {{u._name}}
               </option>
             </select>
+
+            <label >Quantity</label>
+            <input type="number" [(ngModel)]="c.orders[i].quantity" name="name{{i}}" class="form-control col-md-6" #name="ngModel" required />
+
             <label >Provider</label>
             <div class="form-group">
               <div class="form-label-group">
@@ -45,7 +106,6 @@
                   </option>
                 </select>
               </div>
-              {{productsByCat | json}}}
             </div>
           </div>
           <br />

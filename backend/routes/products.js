@@ -13,4 +13,6 @@ router.put('/edit/:id', productsController.update);
 
 router.delete('/delete/:id', productsController.drop);
 
+router.get('/getbycategory/:id', productsController.listAllByCategory);
+
 module.exports = router;

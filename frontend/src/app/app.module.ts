@@ -13,7 +13,8 @@ import { MatToolbarModule,
   MatCardModule,
   MatTableModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -143,7 +144,9 @@ const routes: Routes = [
     MatDividerModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule
+
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
