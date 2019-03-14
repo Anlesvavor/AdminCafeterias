@@ -64,7 +64,24 @@ export class ProductsCreateComponent implements OnInit {
       });
   }
 
-  addProduct(name, units, category, description, price, provider) {
+  addProduct(name, category, description, price) {
+    let units: any=[];
+    let input_obj = document.getElementsByTagName('input');
+    for (let i = 0; i < input_obj.length; i++) {
+      // if input object is checkbox and checkbox is checked then ...
+      if (input_obj[i].type === 'checkbox' && input_obj[i].checked === true && input_obj[i].name === 'unit') {
+          // ... increase counter and concatenate checkbox value to the url string
+          units.push(input_obj[i].value);
+      }
+    }
+    let provider: any=[];
+    for (let i = 0; i < input_obj.length; i++) {
+      // if input object is checkbox and checkbox is checked then ...
+      if (input_obj[i].type === 'checkbox' && input_obj[i].checked === true && input_obj[i].name === 'provider') {
+          // ... increase counter and concatenate checkbox value to the url string
+          units.push(input_obj[i].value);
+      }
+    }
     this.productService.addProduct(name, units, category, description, price, provider).subscribe(() => {
       this.router.navigate(['products/list']);
     });

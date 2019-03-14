@@ -13,7 +13,7 @@
         <div class="form-label-group">
           <tbody>
             <tr *ngFor="let u of units">
-              <input class="form-check-input" type="checkbox" name="unit" id="unit" value="{{u._name}}" #unit>
+              <input class="form-check-input" type="checkbox" name="unit" id="unit" value="{{u._id}}" #unit>
               <td>
                   {{u._name}}
               </td>
@@ -51,16 +51,18 @@
       <div class="form-group">
         <div class="form-label-group">
           <!--<label for="category">Category</label>-->
-          <select formControlName="provider" id="provider" class="form-control" required="required"  #provider>
-            <option *ngFor="let p of providers" value="{{p._name}}" >
-              {{p._name}}
-            </option>
-          </select>
+          <tbody>
+            <tr *ngFor="let p of providers">
+              <input class="form-check-input" type="checkbox" name="provider" id="provider" value="{{p._id}}" #provider>
+              <td>
+                  {{p._name}}
+              </td>
+            </tr>
+          </tbody>
         </div>
       </div>
-      <button class="btn" (click)="addProduct(name.value, unit.id, category.value, description.value, price.value, provider.id )" >Test</button>
       <button class="btn" routerLink="/products/list">Back</button>
-      <button class="btn btn-primary " type="submit" (click)="addProduct(name.value, unit.id, category.value, description.value, price.value, provider.id )" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+      <button class="btn btn-primary " type="submit" (click)="addProduct(name.value, category.value, description.value, price.value )" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
     </form>
   </div>
 
