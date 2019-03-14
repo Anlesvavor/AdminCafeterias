@@ -15,6 +15,7 @@ function create(req, res, next) {
         _diner : req.body.diner,
         _orders: req.body.orders,
         _status: req.body.status,
+        _date: new Date(),
         _approvedBy: req.body._approvedBy,
         _dateApproved: req._dateApproved,
         _requisitionOrig: req._requisitionOrig

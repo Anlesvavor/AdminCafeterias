@@ -15,9 +15,9 @@ let schema = new Schema({
 
 class Requisition{
 
-    constructor(diner, orders, status, approvedBy, dateApproved, requisitionOrig){
+    constructor(diner, date, orders, status, approvedBy, dateApproved, requisitionOrig){
         this._diner = diner;
-        this._date = new Date();
+        this._date = date;
         this._orders = orders;
         this._status = status;
         this._approvedBy = approvedBy;

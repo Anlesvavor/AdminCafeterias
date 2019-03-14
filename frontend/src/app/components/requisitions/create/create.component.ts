@@ -24,9 +24,11 @@ export class RequisitionsCreateComponent implements OnInit {
   categories: any=[];
   providers: any = [];
   orders : any = [];
+  productsByCat: any = [];
   products : any = [];
   unities : any = [];
   dinners : any = [];
+  countCategories = 0;
 
   constructor(private dinnersService : DinnerService, private unitiesService : UnitService, private productsService : ProductService, private providersService : ProviderService, private categoriesService : CategoriesService, private requisitionService: RequisitionsService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
@@ -43,6 +45,17 @@ export class RequisitionsCreateComponent implements OnInit {
         this.categories = this.categories.data.docs;
         console.log('Data requested ...');
         console.log(this.categories);
+        this.countCategories = this.categories.length;
+        console.log(this.countCategories);
+        for(let i = 0; i < this.countCategories; i++) {
+          this.productsByCat.push(
+            {
+              category : this.categories[i]._name,
+              orders : []
+            }
+            )
+        }
+        console.log(this.productsByCat);
       });
     this.providersService
       .getProviders()
@@ -70,13 +83,13 @@ export class RequisitionsCreateComponent implements OnInit {
       });
   }
 
-  add() {
-    this.orders.push(
+  add(i) {
+    this.productsByCat[i].orders.push(
       {
-        "product" : {},
-        "quantity" : "",
-        "unit" : {},
-        "provider" : ""
+        product : "",
+        quantity : "",
+        unit : {},
+        provider : ""
       }
       );
     console.log(this.orders);
@@ -90,9 +103,16 @@ export class RequisitionsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
+    console.log(this.countCategories);
+    console.log(this.categories);
   }
 
-  fetchProductData(value: string) {
-
+  fetchProductData(id: string) {
+    this.productsService
+      .getProductById(id)
+      .subscribe((data : Product) => {
+          return data;
+        }
+      )
   }
 }
