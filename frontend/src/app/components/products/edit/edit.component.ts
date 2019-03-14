@@ -63,7 +63,6 @@ export class ProductsEditComponent implements OnInit {
       .subscribe((data : Unit[]) =>{
         this.units = data;
         this.units = this.units.data.docs;
-        console.log(this.units);
       });
   }
 

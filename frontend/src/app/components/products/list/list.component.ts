@@ -36,13 +36,11 @@ export class ProductsListComponent implements OnInit {
     this.unitService.getUnits().subscribe(units => {
       this.units = units;
       this.units = this.units.data.docs;
-      console.log(this.units);
     });
 
     this.providerService.getProviders().subscribe(providers => {
       this.providers = providers;
       this.providers = this.providers.data.docs;
-      console.log(this.providers);
     });
 
     console.log("AQUI");
@@ -68,14 +66,12 @@ export class ProductsListComponent implements OnInit {
       .subscribe((data: Unit[]) => {
         this.units = data;
         this.units = this.units.data.docs;
-        console.log(this.units);
       })
     this.providerService
     .getProviders()
     .subscribe((data: Unit[]) => {
       this.providers = data;
       this.providers = this.providers.data.docs;
-      console.log(this.providers);
     })
   }
 

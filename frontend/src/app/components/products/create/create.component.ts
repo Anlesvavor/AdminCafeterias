@@ -52,7 +52,6 @@ export class ProductsCreateComponent implements OnInit {
       .subscribe((data : Provider[]) => {
         this.providers = data;
         this.providers = this.providers.data.docs;
-        console.log(this.providers);
       });
 
     this.unitService
@@ -60,7 +59,6 @@ export class ProductsCreateComponent implements OnInit {
       .subscribe((data : Unit[]) =>{
         this.units = data;
         this.units = this.units.data.docs;
-        console.log(this.units);
       });
   }
 
