@@ -10,6 +10,8 @@ import {CategoriesService} from "../../../categories.service";
 import {Category} from "../../../category.model";
 import {ProviderService} from "../../../provider.service";
 import {Provider} from "../../../provider.model";
+import { UnitService } from 'src/app/unit.service';
+import { Unit } from 'src/app/unit.model';
 
 
 
@@ -22,11 +24,12 @@ export class ProductsCreateComponent implements OnInit {
   createForm : FormGroup;
   categories: any=[];
   providers: any=[];
+  units: any=[];
 
-  constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private productService: ProductService, private fb: FormBuilder, private router:Router) {
-    this.createForm = this.fb.group({
+  constructor(private providersService : ProviderService, private categoriesService : CategoriesService, private productService: ProductService, private fb: FormBuilder, private router:Router, private unitService: UnitService) {
+    this.createForm = this.fb.group ({
       name: ['', Validators.required],
-      unities: ['', Validators.required],
+      unit: ['', Validators.required],
       category:  ['', Validators.required],
       description:  ['', Validators.required],
       price:  ['', Validators.required],
@@ -49,11 +52,20 @@ export class ProductsCreateComponent implements OnInit {
       .subscribe((data : Provider[]) => {
         this.providers = data;
         this.providers = this.providers.data.docs;
+        console.log(this.providers);
+      });
+
+    this.unitService
+      .getUnits()
+      .subscribe((data : Unit[]) =>{
+        this.units = data;
+        this.units = this.units.data.docs;
+        console.log(this.units);
       });
   }
 
-  addProduct(name, unities, category, description, price, provider) {
-    this.productService.addProduct(name, unities, category, description, price, provider).subscribe(() => {
+  addProduct(name, units, category, description, price, provider) {
+    this.productService.addProduct(name, units, category, description, price, provider).subscribe(() => {
       this.router.navigate(['products/list']);
     });
   }
