@@ -77,8 +77,22 @@ export class ProductsEditComponent implements OnInit {
         this.updateForm.get('category').setValue(this.product.data._category);
         this.updateForm.get('description').setValue(this.product.data._description);
         this.updateForm.get('price').setValue(this.product.data._price);
-        this.updateForm.get('units').setValue(this.product.data._units);
-        this.updateForm.get('provider').setValue(this.product.data._provider);
+        this.updateForm.get('units').setValue(this.product.data._unities.forEach(un => {
+          let input_obj = document.getElementsByTagName('input');
+            for (let i = 0; i < input_obj.length; i++) {
+              if (input_obj[i].type === 'checkbox' && input_obj[i].value === un && input_obj[i].name === 'unit') {
+                input_obj[i].checked=true;
+              }
+            }
+        }));
+        this.updateForm.get('provider').setValue(this.product.data._provider.forEach(prov => {
+          let input_obj = document.getElementsByTagName('input');
+            for (let i = 0; i < input_obj.length; i++) {
+              if (input_obj[i].type === 'checkbox' && input_obj[i].value === prov && input_obj[i].name === 'provider') {
+                input_obj[i].checked=true;
+              }
+            }
+        }));
       });
     });
   }
