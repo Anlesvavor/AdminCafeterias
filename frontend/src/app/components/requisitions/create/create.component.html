@@ -1,6 +1,7 @@
 
 <div class="card card-register mx-auto mt-5">
-  <div class="card-header">Add a Requisitions</div>
+  <div class="card-header">Add a Requisitions  </div>
+  <p>{{date | date:'HH:mm:ss dd/MM/yyyy'}}</p>
   <div class="card-body">
     <form [formGroup]="createForm">
       <div class="form-group">
@@ -147,16 +148,20 @@
             </div>
 
             <mat-autocomplete #auto3="matAutocomplete">
-
+              <mat-option >CEDIS</mat-option>
               <mat-option *ngFor="let option of filteredProviderOptions | async" [value]="option._name">{{option._name}}</mat-option>
 
             </mat-autocomplete>
           </div>
           <br />
+          <!--
+          <button class="btn btn-danger " [disabled]="i==0" (click)="remove(j)">Remove Item {{i}}</button>
+          -->
         </div>
         <button class="btn btn-primary " [disabled]="!formRef.form.valid" (click)="add(j)">Add Item</button>
-      </form>
-        {{orders | json}}
+
+
+        </form>
         <br />
       </div>
       <button class="btn" routerLink="/requisitions/list">Back</button>

@@ -9,22 +9,43 @@ let schema = new Schema({
     _status : String,
     _approvedBy : String,
     _dateApproved : Date,
+    _observations : String,
+    _approvalObservations: String,
     _requisitionOrig : []
 
 });
 
 class Requisition{
 
-    constructor(diner, date, orders, status, approvedBy, dateApproved, requisitionOrig){
+    constructor(diner, date, orders, status, approvedBy, dateApproved, observations, approvalObservations, requisitionOrig){
         this._diner = diner;
         this._date = date;
         this._orders = orders;
         this._status = status;
         this._approvedBy = approvedBy;
         this._dateApproved = dateApproved;
+        this._observations = observations;
+        this._approvalObservations = approvalObservations,
         this._requisitionOrig = requisitionOrig;
+        this._approvalObservations = approvalObservations;
     }
 
+
+    get observations() {
+        return this._observations;
+    }
+
+    set observations(value) {
+        this._observations = value;
+    }
+
+    get approvalObservations() {
+        return this._approvalObservations;
+    }
+
+    set approvalObservations(value) {
+        this._approvalObservations = value;
+    }
 
     get diner() {
         return this._diner;

@@ -33,6 +33,7 @@ export class RequisitionsCreateComponent implements OnInit {
   unities : any = [];
   dinners : any = [];
   countCategories = 0;
+  date = new Date();
 
   dinerControl = new FormControl();
   productControl = new FormControl();
@@ -56,6 +57,9 @@ export class RequisitionsCreateComponent implements OnInit {
       unities: this.unitsControl,
       provider: this.providerControl
     });
+    setInterval(()=>{
+      this.date = new Date();
+    }, 1000)
   }
 
   fetchData() {
@@ -125,6 +129,11 @@ export class RequisitionsCreateComponent implements OnInit {
       );
     console.log(this.orders);
   }
+/*
+  remove(i) {
+    this.productsByCat[i].orders.pop();
+  }
+  */
 
   addRequisition(diner) {
     this.requisitionService.addRequisition(diner, this.productsByCat).subscribe(() => {
