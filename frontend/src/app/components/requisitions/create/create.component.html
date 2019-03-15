@@ -19,14 +19,16 @@
         <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
           <label for="diner">Diner</label>
           <input
+            [ngModel]="diner"
             class="form-control col-md-12"
             matInput
             id="diner"
             [formControl]="dinerControl"
             [matAutocomplete]="auto"
             required
+            placeholder=""
             #diner
-          >
+          />
         </div>
 
         <mat-autocomplete #auto="matAutocomplete">
@@ -158,15 +160,27 @@
           <button class="btn btn-danger " [disabled]="i==0" (click)="remove(j)">Remove Item {{i}}</button>
           -->
         </div>
-        <button class="btn btn-primary " [disabled]="!formRef.form.valid" (click)="add(j)">Add Item</button>
+          <button class="btn btn-primary " [disabled]="!formRef.form.valid" (click)="add(j)">Add Item</button>
 
 
         </form>
         <br />
+
+
       </div>
+
+      <label for="observations">Observations</label>
+      <input
+        id="observations"
+        [formControl]="observationsControl"
+        class="col-md-12"
+        #observations
+      >
+
       <button class="btn" routerLink="/requisitions/list">Back</button>
-      <button class="btn btn-primary " type="submit" (click)="addRequisition(diner.value )" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+      <button class="btn btn-primary " type="submit" (click)="addRequisition(diner.value, observations.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
     </form>
   </div>
+
 </div>
 
