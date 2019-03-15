@@ -1,0 +1,53 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Delivery Truck</div>
+
+
+  <div class="card-body">
+    <button routerLink="/deliverytrucks/create" class="btn btn-primary">Add Delivery Truck</button>
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Driver</th>
+            <th>Plate Number</th>
+            <th>Driver Phone Number</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dt of deliveryTrucks">
+            <td>
+              {{dt._name}}
+            </td>
+            <td>
+              {{dt._driver}}
+            </td>
+            <td>
+              {{dt._plateNumber}}
+            </td>
+            <td>
+              {{dt._driverPhoneNumber}}
+            </td>
+            <td>
+              {{dt._capacity}}
+            </td>
+            <td>
+              <button routerLink="/deliverytrucks/edit/{{dt._id}}" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="dropDeliveryTruck(dt._id)" class="btn btn-danger">
+                  <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

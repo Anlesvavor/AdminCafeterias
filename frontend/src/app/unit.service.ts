@@ -36,11 +36,9 @@ export class UnitService {
   }
 
   updateUnit(id, name) {
-    console.log("tic");
     const unit = {
       name: name
     };
-    console.log("toc");
     return this.http.put(`${this.uri}/units/edit/${id}`, unit);
   }
 

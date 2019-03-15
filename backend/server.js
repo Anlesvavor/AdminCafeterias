@@ -12,6 +12,7 @@ const ordersRouter = require('./routes/orders');
 const categoriesRouter = require('./routes/categories');
 const loginRouter = require('./routes/login');
 const requisitionsRouter = require('./routes/requisitions');
+const deliveryTrucksRouter = require('./routes/deliveryTrucks')
 const rolesRouter = require('./routes/roles');
 
 const app = express();
@@ -53,6 +54,7 @@ app.use('/orders', ordersRouter);
 app.use('/categories', categoriesRouter);
 app.use('/requisitions', requisitionsRouter);
 app.use('/roles', rolesRouter);
+app.use('/deliveryTrucks', deliveryTrucksRouter);
 
 const port = 4444;
 app.listen(port, () => console.log('Expresss running on port ' + port));

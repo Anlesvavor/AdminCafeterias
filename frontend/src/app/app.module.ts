@@ -43,7 +43,6 @@ import { DinnersListComponent } from './components/dinners/list/list.component';
 import { ListUnitComponent } from './components/units/list/listUnit.component';
 import { CreateUnitComponent } from './components/units/create/createUnit.component';
 import { EditUnitComponent } from './components/units/edit/editUnit.component';
-import { UnitService } from './unit.service';
 import { CategoriesEditComponent } from './components/categories/edit/edit.component';
 import { CategoriesListComponent } from './components/categories/list/list.component';
 import { CategoriesCreateComponent } from './components/categories/create/create.component';
@@ -54,6 +53,9 @@ import { RequisitionsDetailComponent } from './components/requisitions/detail/de
 import { RolesListComponent } from './components/roles/list/list.component';
 import { RolesEditComponent } from './components/roles/edit/edit.component';
 import { RolesCreateComponent } from './components/roles/create/create.component';
+import { CreateDeliveryTruckComponent } from './components/deliveryTrucks/create/createDeliveryTruck.component'
+import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/editDeliveryTrucks.component';
+import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 
 
 const routes: Routes = [
@@ -92,6 +94,10 @@ const routes: Routes = [
   { path: 'requisitions/list', component: RequisitionsListComponent},
   { path: 'requisitions/details/:id', component: RequisitionsDetailComponent},
 
+  { path: 'deliverytrucks/create', component: CreateDeliveryTruckComponent},
+  { path: 'deliverytrucks/edit/:id', component: EditDeliveryTrucksComponent},
+  { path: 'deliverytrucks/list', component: ListDeliveryTruckComponent},
+
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
 
@@ -125,7 +131,10 @@ const routes: Routes = [
     RequisitionsDetailComponent,
     RolesListComponent,
     RolesEditComponent,
-    RolesCreateComponent
+    RolesCreateComponent,
+    CreateDeliveryTruckComponent,
+    ListDeliveryTruckComponent,
+    EditDeliveryTrucksComponent
   ],
   imports: [
     BrowserModule,

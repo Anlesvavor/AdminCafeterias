@@ -1,0 +1,52 @@
+
+
+  <div class="card card-register mx-auto mt-5">
+    <div class="card-header">Update a Delivery Truck</div>
+    <div class="card-body">
+      <!-- [(ng model)]-->
+      <form [formGroup]="updateForm">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="form-label-group">
+              <input formControlName="name" type="text" id="name" class="form-control" placeholder="name" required="required" autofocus="autofocus" #name>
+              <label for="name">Delivery Truck Name</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-label-group">
+                <input formControlName="driver" type="text" id="driver" class="form-control" placeholder="Driver" required="required" autofocus="autofocus" #driver>
+                <label for="driver">Driver</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-label-group">
+                <input formControlName="plateNumber" type="text" id="plateNumber" class="form-control" placeholder="Plate Number" required="required" autofocus="autofocus" #plateNumber>
+                <label for="plateNumber">Plate Number</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-label-group">
+                <input formControlName="driverPhoneNumber" type="text" id="driverPhoneNumber" class="form-control" placeholder="Driver Phone Number" required="required" autofocus="autofocus" #driverPhoneNumber>
+                <label for="driverPhoneNumber">Driver Phone Number</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-label-group">
+                <input formControlName="capacity" type="text" id="capacity" class="form-control" placeholder="capacity" required="required" autofocus="autofocus" #capacity>
+                <label for="capacity">Capacity</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn" routerLink="/deliverytrucks/list">Back</button>
+        <button class="btn btn-primary " type="submit" (click)="updateDeliveryTruck(name.value, driver.value,  plateNumber.value, driverPhoneNumber.value, capacity.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+      </form>
+    </div>
+  </div>

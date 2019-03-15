@@ -63,13 +63,13 @@ class Product{
   }
 
 
-    get provider() {
-        return this._provider;
-    }
+  get provider() {
+      return this._provider;
+  }
 
-    set provider(value) {
-        this._provider = value;
-    }
+  set provider(value) {
+      this._provider = value;
+  }
 }
 
 schema.plugin(mongoosePaginate);
