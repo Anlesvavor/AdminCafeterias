@@ -12,6 +12,7 @@ import {ProviderService} from "../../../provider.service";
 import {Provider} from "../../../provider.model";
 import { UnitService } from 'src/app/unit.service';
 import { Unit } from 'src/app/unit.model';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 
 
@@ -79,6 +80,14 @@ export class ProductsCreateComponent implements OnInit {
           // ... increase counter and concatenate checkbox value to the url string
           provider.push(input_obj[i].value);
       }
+    }
+    if(units.length<1){
+      alert ("please check a unit");
+      return 0;
+    }
+    if(provider.length<1){
+      alert ("please check a provider");
+      return 0;
     }
     this.productService.addProduct(name, units, category, description, price, provider).subscribe(() => {
       this.router.navigate(['products/list']);
