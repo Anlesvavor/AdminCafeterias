@@ -37,7 +37,7 @@ export class RequisitionsCreateComponent implements OnInit {
 
 
 
-  dinerControl = new FormControl(Validators.required);
+  dinerControl = new FormControl();
   productControl = new FormControl(Validators.required);
   unitsControl = new FormControl(Validators.required);
   providerControl = new FormControl(Validators.required);
@@ -90,16 +90,13 @@ export class RequisitionsCreateComponent implements OnInit {
             );
           this.productsInCat[i].productsAvailable = this.productsOfCategory(this.categories[i]._name);
         }
-
-
-        console.log(this.productsByCat);
-        console.log(this.productsInCat);
       });
     this.providersService
       .getProviders()
       .subscribe((data : Provider[]) => {
         this.providers = data;
         this.providers = this.providers.data.docs;
+        this.providers.push({"_name":"CEDIS"});
       });
     this.productsService
       .getProducts()

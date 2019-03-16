@@ -150,7 +150,6 @@
             </div>
 
             <mat-autocomplete #auto3="matAutocomplete">
-              <mat-option >CEDIS</mat-option>
               <mat-option *ngFor="let option of filteredProviderOptions | async" [value]="option._name">{{option._name}}</mat-option>
 
             </mat-autocomplete>

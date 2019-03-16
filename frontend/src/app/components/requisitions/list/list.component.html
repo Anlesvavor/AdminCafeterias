@@ -24,9 +24,12 @@
             {{u._diner}}
           </td>
           <td>
-            <ul *ngFor="let w of u._orders">
-              {{w.product}}
-            </ul>
+            <ng-container *ngFor="let w of u._orders">
+              <ul *ngFor="let v of w.orders">
+                {{v.product}}, {{v.quantity}} {{v.unit}}
+              </ul>
+            </ng-container>
+
           </td>
           <td>
             {{u._status}}

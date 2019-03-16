@@ -58,6 +58,8 @@ import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/ed
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 const routes: Routes = [
 
   { path: 'users/create', component: UserCreateComponent},
@@ -154,7 +156,8 @@ const routes: Routes = [
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMatSelectSearchModule
 
   ],
   providers: [UserService],
