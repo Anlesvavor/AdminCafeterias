@@ -52,7 +52,6 @@ export class RequisitionsListComponent implements OnInit {
   }
 
   editRequisition(id) {
-    console.log(id);
     this.router.navigate([`/edit/${id}`]);
   }
 

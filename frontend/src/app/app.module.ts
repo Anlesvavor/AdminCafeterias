@@ -60,6 +60,8 @@ import { LoginComponent } from './login/login.component';
 
 
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent},
@@ -159,7 +161,8 @@ const routes: Routes = [
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMatSelectSearchModule
 
   ],
   providers: [UserService],

@@ -5,5 +5,7 @@ export interface Requisition {
   status : String,
   approvedBy : String,
   dateApproved : Date,
-  requisitionOrig : {}
+  observations: String,
+  approvalObservations: String,
+  requisitionOrig : []
 }

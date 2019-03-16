@@ -27,15 +27,16 @@ export class RequisitionsService {
     return this.http.get(`${this.uri}/requisitions/show/${id}`);
   }
 
-  addRequisition(diner, orders) {
+  addRequisition(diner, orders, observations) {
     const requisition = {
       diner: diner,
       orders : orders,
-      status: "STANDBY",
+      status: "Pending",
       approvedBy : null,
       dateApproved : null,
+      observations : observations,
+      approvalObservations : "",
       requisitionOrig : {}
-
   };
     return this.http.post(`${this.uri}/requisitions/new`, requisition);
   }

@@ -16,11 +16,11 @@ function create(req, res, next) {
         _orders: req.body.orders,
         _status: req.body.status,
         _date: Date.now().valueOf(),
-        _approvedBy: req.body._approvedBy,
-        _dateApproved: req._dateApproved,
-        _observations: req._observations,
-        _approvalObservations: req._approvalObservations,
-        _requisitionOrig: req._requisitionOrig
+        _approvedBy: req.body.approvedBy,
+        _dateApproved: req.body.dateApproved,
+        _observations: req.body.observations,
+        _approvalObservations: req.approvalObservations,
+        _requisitionOrig: req.requisitionOrig
     });
 
     requisition.save()

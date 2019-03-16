@@ -35,11 +35,13 @@ export class RequisitionsCreateComponent implements OnInit {
   countCategories = 0;
   date = new Date();
 
-  dinerControl = new FormControl();
-  productControl = new FormControl();
-  unitsControl = new FormControl();
-  providerControl = new FormControl();
 
+
+  dinerControl = new FormControl();
+  productControl = new FormControl(Validators.required);
+  unitsControl = new FormControl(Validators.required);
+  providerControl = new FormControl(Validators.required);
+  observationsControl = new FormControl();
 
 
   filteredDinerOptions: Observable<string[]>;
@@ -47,6 +49,7 @@ export class RequisitionsCreateComponent implements OnInit {
   filteredUnitOptions: Observable<string[]>;
   filteredProviderOptions: Observable<string[]>;
   private ordersForm: any;
+  observations: string;
 
 
 
@@ -55,7 +58,8 @@ export class RequisitionsCreateComponent implements OnInit {
       diner: this.dinerControl,
       product: this.productControl,
       unities: this.unitsControl,
-      provider: this.providerControl
+      provider: this.providerControl,
+      observations: this.observationsControl
     });
     setInterval(()=>{
       this.date = new Date();
@@ -86,16 +90,13 @@ export class RequisitionsCreateComponent implements OnInit {
             );
           this.productsInCat[i].productsAvailable = this.productsOfCategory(this.categories[i]._name);
         }
-
-
-        console.log(this.productsByCat);
-        console.log(this.productsInCat);
       });
     this.providersService
       .getProviders()
       .subscribe((data : Provider[]) => {
         this.providers = data;
         this.providers = this.providers.data.docs;
+        this.providers.push({"_name":"CEDIS"});
       });
     this.productsService
       .getProducts()
@@ -135,21 +136,18 @@ export class RequisitionsCreateComponent implements OnInit {
   }
   */
 
-  addRequisition(diner) {
-    this.requisitionService.addRequisition(diner, this.productsByCat).subscribe(() => {
+  addRequisition(diner, observations) {
+    this.requisitionService.addRequisition(diner, this.productsByCat, observations).subscribe(() => {
       this.router.navigate(['requisitions/list']);
     });
   }
 
   ngOnInit() {
     this.fetchData();
-    //this.filteredDinerOptions = this.filteredOptions(this.dinerControl, this.dinners);
     this.filteredDinerOptions = this.dinerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.dinners)));
-    //this.filteredProductOptions =  this.productsInCat.map(v=> this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, v))));
     this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
     this.filteredUnitOptions = this.unitsControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.unities)));
     this.filteredProviderOptions = this.providerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.providers)));
-    //this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
   }
 
   filteredCategoriesProductsOptions(cageoryId) {
