@@ -46,8 +46,18 @@
         <div class="form-row">
           <div class="col-md-6">
             <div class="form-label-group">
-              <input formControlName="role" type="text" id="role" class="form-control" placeholder="role" required="required" #role>
-              <label for="role">Role</label>
+              <mat-form-field>
+                <mat-select formControlName="role" placeholder="Role" required="required" #role>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let role of roles" [value]="role">
+                    {{role._name}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error> -->
+                <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+              </mat-form-field>
+              <!-- <input formControlName="role" type="text" id="role" class="form-control" placeholder="role" required="required" #role>
+              <label for="role">Role</label> -->
             </div>
           </div>
         </div>

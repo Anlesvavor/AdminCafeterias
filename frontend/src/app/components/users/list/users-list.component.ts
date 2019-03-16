@@ -20,19 +20,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-      this.users = this.users.data.docs;
-
-      console.log(this.users);
-    });
-    console.log("AQUI");
-    console.log(this.users);
-
-    /*
-        this.fetchUsers();
-        console.log("es este"); console.log(this.uUsers);
-        */
+    this.fetchUsers();
   }
 
   fetchUsers() {

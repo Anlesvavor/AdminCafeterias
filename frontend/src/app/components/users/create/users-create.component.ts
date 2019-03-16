@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, Validator} from "@angular/forms";
 import { Router }  from '@angular/router';
 
 import { UserService } from "../../../user.service";
+import { RoleService } from "../../../role.service"
+import { Role } from "../../../role.model";
 
 
 @Component({
@@ -13,8 +15,9 @@ import { UserService } from "../../../user.service";
 export class UserCreateComponent implements OnInit {
 
   createForm : FormGroup;
+  roles: any=[];
 
-  constructor(private userService: UserService, private fb: FormBuilder, private router:Router) {
+  constructor(private roleService: RoleService, private userService: UserService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -32,7 +35,17 @@ export class UserCreateComponent implements OnInit {
     });
   }
 
+  fetchRoles() {
+    this.roleService
+      .getRoles()
+      .subscribe((data: Role[]) => {
+        this.roles = data;
+        this.roles = this.roles.data.docs;
+      })
+  }
+
   ngOnInit() {
+    this.fetchRoles();
   }
 
 }

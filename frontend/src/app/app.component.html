@@ -1,14 +1,14 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="islogged()"></app-navbar>
   <div id="wrapper">
     <!-- Sidebar -->
 
-    <app-sidebar></app-sidebar>
+    <app-sidebar *ngIf="islogged()"></app-sidebar>
     <div id="content-wrapper">
 
       <div class="container-fluid">
 
         <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" *ngIf="islogged()">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
@@ -24,7 +24,7 @@
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
-      <footer class="sticky-footer">
+      <footer class="sticky-footer" *ngIf="islogged()">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright © Your Website 2019</span>

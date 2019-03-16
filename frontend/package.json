@@ -23,6 +23,7 @@
     "@angular/router": "~7.2.0",
     "@fortawesome/fontawesome-free": "5.7.0",
     "bootstrap": "^4.3.1",
+    "bootstrap-select": "^1.13.8",
     "bootstrap3": "^3.3.5",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",

@@ -56,9 +56,13 @@ import { RolesCreateComponent } from './components/roles/create/create.component
 import { CreateDeliveryTruckComponent } from './components/deliveryTrucks/create/createDeliveryTruck.component'
 import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/editDeliveryTrucks.component';
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
+import { LoginComponent } from './login/login.component';
+
 
 
 const routes: Routes = [
+
+  { path: 'login', component: LoginComponent},
 
   { path: 'users/create', component: UserCreateComponent},
   { path: 'users/edit/:id', component: UserEditComponent},
@@ -134,7 +138,8 @@ const routes: Routes = [
     RolesCreateComponent,
     CreateDeliveryTruckComponent,
     ListDeliveryTruckComponent,
-    EditDeliveryTrucksComponent
+    EditDeliveryTrucksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
