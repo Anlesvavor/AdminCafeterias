@@ -19,7 +19,7 @@ function create(req, res, next) {
         _approvedBy: req.body.approvedBy,
         _dateApproved: req.body.dateApproved,
         _observations: req.body.observations,
-        _approvalObservations: req.approvalObservations,
+        _approvalObservations: req.body.approvalObservations,
         _requisitionOrig: req.requisitionOrig
     });
 

@@ -1,3 +1,161 @@
-<p>
-  edit works!
-</p>
+
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Add a Requisitions  </div>
+
+  <div class="card-body">
+    <p>{{date | date:'HH:mm dd/MM/yyyy'}}</p>
+    <form [formGroup]="updateForm">
+      <div class="form-group">
+
+        <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+          <label for="diner">Diner</label>
+          <input
+            [(ngModel)]="requisition._diner"
+            class="form-control col-md-12"
+            matInput
+            id="diner"
+            name="diner"
+            [matAutocomplete]="auto"
+            required
+            placeholder=""
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredDinerOptions | async" [value]="option._name">{{option._name}}</mat-option>
+        </mat-autocomplete>
+
+
+      </div>
+
+      <div *ngFor="let c of requisition._orders; let j = index">
+        <h4>{{c.category}}</h4>
+
+        <!-- forma de los productos -->
+        <form #formRef="ngForm">
+          <div *ngFor="let o of c.orders; let i = index; trackBy:trackByIndex" >
+            <div class="form-group">
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+                      <label for="product{{i}}">Product</label>
+                      <input
+                        [(ngModel)]="c.orders[i].product"
+                        class="form-control col-md-12"
+                        matInput
+                        name="product{{i}}"
+                        id="product{{i}}"
+                        [matAutocomplete]="auto2"
+                        [formControl]="productControl"
+                        required
+                        #product
+                      >
+                    </div>
+
+                    <mat-autocomplete #auto2="matAutocomplete">
+                      <ng-container *ngFor="let u of filteredProductOptions | async">
+                        <mat-option *ngIf="u._category == c.category" [value]="u._name">{{u._name}}</mat-option>
+                      </ng-container>
+                    </mat-autocomplete>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+                      <label for="unities{{i}}">Units</label>
+                      <input
+                        [(ngModel)]="c.orders[i].unit"
+                        class="form-control col-md-12"
+                        matInput
+                        id="unities{{i}}"
+                        name="unities{{i}}"
+                        [matAutocomplete]="auto3"
+                        required
+                        #unities
+                      >
+                    </div>
+
+                    <mat-autocomplete #auto3="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredUnitOptions | async" [value]="option._name">{{option._name}}</mat-option>
+                    </mat-autocomplete>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <div class="">
+                      <label for="quantity{{i}}" >Quantity</label>
+                      <input
+                        type="number"
+                        [(ngModel)]="c.orders[i].quantity"
+                        id="quantity{{i}}"
+                        name="quantity{{i}}"
+                        class="form-control col-md-12"
+                        #name="ngModel"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+                    <label for="provider{{i}}">Provider</label>
+                    <input
+                      [(ngModel)]="c.orders[i].provider"
+                      class="form-control col-md-12"
+                      matInput
+                      id="provider{{i}}"
+                      name="provider{{i}}"
+                      [matAutocomplete]="auto4"
+                      required
+                      #provider
+                    >
+                  </div>
+
+                  <mat-autocomplete #auto4="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredProviderOptions | async" [value]="option._name">{{option._name}}</mat-option>
+                  </mat-autocomplete>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <button class="btn btn-danger" (click)="remove(j)">Remove Item</button>
+
+          </div>
+          <button class="btn btn-primary"  (click)="add(j)">Add Item</button>
+
+        </form>
+        <br />
+
+
+      </div>
+
+      <label for="ApprovalObservations">Approval Observations {{requisition._approvalObservations}}</label>
+      <input
+        id="ApprovalObservations"
+        name="ApprovalObservations"
+        [(ngModel)]="requisition._approvalObservations"
+        class="col-md-12"
+        #observations
+      >
+
+      <button class="btn btn-primary"  (click)="setStatus('Approved')">Add Item</button>
+      <button class="btn btn-secondary"  (click)="setStatus('Pending')">Add Item</button>
+      <button class="btn btn-danger"  (click)="setStatus('Disapproved')">Add Item</button>
+
+
+
+
+
+      <button class="btn" routerLink="/requisitions/list">Back</button>
+      <button class="btn btn-primary " type="submit" (click)="updateRequisition()" [disabled]=" updateForm.invalid" mat-raised-button color="primary" >Save</button>
+    </form>
+  </div>
+
+</div>
+

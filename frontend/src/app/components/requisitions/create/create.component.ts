@@ -16,6 +16,7 @@ import {Dinner} from "../../../dinner.model";
 import {Observable} from "rxjs/index";
 import {map, startWith} from "rxjs/internal/operators";
 import {HttpClient} from "@angular/common/http";
+import {RequireMatch} from "../../../requireMatch";
 
 @Component({
   selector: 'app-create',
@@ -37,10 +38,10 @@ export class RequisitionsCreateComponent implements OnInit {
 
 
 
-  dinerControl = new FormControl();
-  productControl = new FormControl(Validators.required);
-  unitsControl = new FormControl(Validators.required);
-  providerControl = new FormControl(Validators.required);
+  dinerControl = new FormControl('', [Validators.required]);
+  productControl = new FormControl();
+  unitsControl = new FormControl();
+  providerControl = new FormControl();
   observationsControl = new FormControl();
 
 
@@ -55,11 +56,11 @@ export class RequisitionsCreateComponent implements OnInit {
 
   constructor(private dinnersService : DinnerService, private unitiesService : UnitService, private productsService : ProductService, private providersService : ProviderService, private categoriesService : CategoriesService, private requisitionService: RequisitionsService, private fb: FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
-      diner: this.dinerControl,
-      product: this.productControl,
-      unities: this.unitsControl,
-      provider: this.providerControl,
-      observations: this.observationsControl
+      diner: this.dinerControl
+      //product: this.productControl,
+      //unities: this.unitsControl,
+      //provider: this.providerControl,
+      //observations: this.observationsControl
     });
     setInterval(()=>{
       this.date = new Date();
@@ -130,11 +131,10 @@ export class RequisitionsCreateComponent implements OnInit {
       );
     console.log(this.orders);
   }
-/*
+
   remove(i) {
     this.productsByCat[i].orders.pop();
   }
-  */
 
   addRequisition(diner, observations) {
     this.requisitionService.addRequisition(diner, this.productsByCat, observations).subscribe(() => {
@@ -187,4 +187,9 @@ export class RequisitionsCreateComponent implements OnInit {
       option._name.toLowerCase().includes(filterValue)
     );
   }
+
+  trackByIndex(index: number, value: number) {
+    return index;
+  }
+
 }

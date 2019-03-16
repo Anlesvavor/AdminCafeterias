@@ -27,7 +27,6 @@ class Requisition{
         this._observations = observations;
         this._approvalObservations = approvalObservations,
         this._requisitionOrig = requisitionOrig;
-        this._approvalObservations = approvalObservations;
     }
 
 

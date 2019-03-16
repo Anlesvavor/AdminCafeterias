@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
+import {Requisition} from "./requsitions.model";
 
 @Injectable({
   providedIn: 'root'
@@ -37,16 +38,23 @@ export class RequisitionsService {
       observations : observations,
       approvalObservations : "",
       requisitionOrig : {}
-  };
+    };
     return this.http.post(`${this.uri}/requisitions/new`, requisition);
   }
 
-  updateRequisition(id, diner, orders) {
+  updateRequisition(id, req) {
+    console.log(req);
     const requisition = {
-      diner: diner,
-      orders : orders,
-      data: new Date()
+      diner: req._diner,
+      orders: req._orders,
+      status: req.status,
+      approvedBy: null,
+      dateApproved: req.status == "Approved" ? Date.now().valueOf() : null,
+      observations: req._observations,
+      approvalObservations: req.approvalObservations,
+      requisitionOrig: req
     };
+    console.log(requisition);
     return this.http.put(`${this.uri}/requisitions/edit/${id}`, requisition);
   }
 
