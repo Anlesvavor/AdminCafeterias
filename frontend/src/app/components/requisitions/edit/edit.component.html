@@ -16,9 +16,10 @@
             id="diner"
             name="diner"
             [matAutocomplete]="auto"
+            [formControl]="dinerControl"
             required
             placeholder=""
-            [ngModelOptions]="{standalone: true}"
+
           />
         </div>
 
@@ -49,7 +50,6 @@
                         name="product{{i}}"
                         id="product{{i}}"
                         [matAutocomplete]="auto2"
-                        [formControl]="productControl"
                         required
                         #product
                       >
@@ -96,13 +96,15 @@
                         name="quantity{{i}}"
                         class="form-control col-md-12"
                         #name="ngModel"
+                        min="0"
                         required
                       />
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+                  <div class="form-label-group">
+                    <div class="" matAutocompleteOrigin #origin="matAutocompleteOrigin">
                     <label for="provider{{i}}">Provider</label>
                     <input
                       [(ngModel)]="c.orders[i].provider"
@@ -115,42 +117,59 @@
                       #provider
                     >
                   </div>
-
-                  <mat-autocomplete #auto4="matAutocomplete">
+                    <mat-autocomplete #auto4="matAutocomplete">
                     <mat-option *ngFor="let option of filteredProviderOptions | async" [value]="option._name">{{option._name}}</mat-option>
                   </mat-autocomplete>
+                  </div>
                 </div>
               </div>
             </div>
             <br />
-
-            <button class="btn btn-danger" (click)="remove(j)">Remove Item</button>
-
+            <div>
+              <button class="btn btn-danger" (click)="remove(j)">Remove Item</button>
+            </div>
           </div>
-          <button class="btn btn-primary"  (click)="add(j)">Add Item</button>
-
+          <div>
+            <button class="btn btn-primary"  (click)="add(j)">Add Item</button>
+          </div>
         </form>
         <br />
-
-
       </div>
-
-      <label for="ApprovalObservations">Approval Observations {{requisition._approvalObservations}}</label>
-      <input
-        id="ApprovalObservations"
-        name="ApprovalObservations"
-        [(ngModel)]="requisition._approvalObservations"
-        class="col-md-12"
-        #observations
-      >
-
-      <button class="btn btn-primary"  (click)="setStatus('Approved')">Add Item</button>
-      <button class="btn btn-secondary"  (click)="setStatus('Pending')">Add Item</button>
-      <button class="btn btn-danger"  (click)="setStatus('Disapproved')">Add Item</button>
-
-
-
-
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-label-group">
+            <label for="ApprovalObservations">Approval Observations</label>
+            <input
+              id="ApprovalObservations"
+              name="ApprovalObservations"
+              [(ngModel)]="requisition._approvalObservations"
+              class="form-control col-md-12"
+              #observations
+              [ngModelOptions]="{standalone: true}"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-label-group">
+          <label for="status" >Status</label>
+            <select
+              [(ngModel)]="requisition.status"
+              name="status"
+              id="status"
+              #status
+              class="form-control col-md-12"
+              required
+              [ngModelOptions]="{standalone: true}"
+            >
+              <option value="Approved">Approved</option>
+              <option value="Pending">Pending</option>
+              <option value="Disapproved">Disapproved</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <button class="btn" routerLink="/requisitions/list">Back</button>
       <button class="btn btn-primary " type="submit" (click)="updateRequisition()" [disabled]=" updateForm.invalid" mat-raised-button color="primary" >Save</button>

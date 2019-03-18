@@ -44,6 +44,7 @@ export class RequisitionsService {
 
   updateRequisition(id, req) {
     console.log(req);
+    req._requisitonOrig = {};
     const requisition = {
       diner: req._diner,
       orders: req._orders,
@@ -51,7 +52,7 @@ export class RequisitionsService {
       approvedBy: null,
       dateApproved: req.status == "Approved" ? Date.now().valueOf() : null,
       observations: req._observations,
-      approvalObservations: req.approvalObservations,
+      approvalObservations: req._approvalObservations,
       requisitionOrig: req
     };
     console.log(requisition);

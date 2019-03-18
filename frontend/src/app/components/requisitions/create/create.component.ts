@@ -33,12 +33,13 @@ export class RequisitionsCreateComponent implements OnInit {
   productsInCat: any = [];
   unities : any = [];
   dinners : any = [];
+  diner;
   countCategories = 0;
   date = new Date();
 
 
 
-  dinerControl = new FormControl('', [Validators.required]);
+  dinerControl = new FormControl();
   productControl = new FormControl();
   unitsControl = new FormControl();
   providerControl = new FormControl();
@@ -166,7 +167,7 @@ export class RequisitionsCreateComponent implements OnInit {
   fetchProductData(id: string){
     this.productsService
       .getProductById(id)
-      .subscribe((data : Product) => {
+      .subscribe((data : any) => {
           return data;
         }
       )

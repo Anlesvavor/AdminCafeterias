@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <div class="card card-register mx-auto mt-5">
   <div class="card-header">Add a Requisitions  </div>
 
@@ -79,7 +79,9 @@
                   </div>
 
                   <mat-autocomplete #auto3="matAutocomplete">
-                      <mat-option *ngFor="let option of filteredUnitOptions | async" [value]="option._name">{{option._name}}</mat-option>
+                    <ng-container *ngFor="let option of filteredUnitOptions | async">
+                      <mat-option  [value]="option._name">{{option._name}}</mat-option>
+                    </ng-container>
                   </mat-autocomplete>
                 </div>
               </div>
@@ -96,6 +98,8 @@
                       name="quantity{{i}}"
                       class="form-control col-md-12"
                       #name="ngModel"
+                      min="0"
+                      oninput="validity.valid||(value='');"
                       required
                     />
                   </div>

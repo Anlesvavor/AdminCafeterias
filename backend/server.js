@@ -14,14 +14,15 @@ const loginRouter = require('./routes/login');
 const requisitionsRouter = require('./routes/requisitions');
 const deliveryTrucksRouter = require('./routes/deliveryTrucks')
 const rolesRouter = require('./routes/roles');
+const deliverRouter = require('./routes/deliver');
 
 const app = express();
 
 const router = express.Router();
 
 //app.use(cors());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '10mb', extended:false}));
+app.use(bodyParser.json({limit: '10mb', extended: true}));
 
 
 
@@ -55,6 +56,7 @@ app.use('/categories', categoriesRouter);
 app.use('/requisitions', requisitionsRouter);
 app.use('/roles', rolesRouter);
 app.use('/deliveryTrucks', deliveryTrucksRouter);
+app.use('/deliver', deliverRouter);
 
 const port = 4444;
 app.listen(port, () => console.log('Expresss running on port ' + port));

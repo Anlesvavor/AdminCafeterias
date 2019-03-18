@@ -66,6 +66,7 @@ export class RequisitionsEditComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
+    /*
     this.updateForm = this.fb.group({
       diner: this.dinerControl,
       product: this.productControl,
@@ -73,6 +74,7 @@ export class RequisitionsEditComponent implements OnInit {
       provider: this.providerControl,
       observations: this.observationsControl
     });
+    */
     this.filteredDinerOptions = this.dinerControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.dinners)));
     this.filteredProductOptions = this.productControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.products)));
     this.filteredUnitOptions = this.unitsControl.valueChanges.pipe(startWith(''), map(value => this._filter(value, this.unities)));
