@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const deliverController = require('../controllers/deliverController');
+const deliversController = require('../controllers/deliversController');
 
 
-router.get('/', deliverController.listAll);
+router.get('/', deliversController.listAll);
 
-router.post('/new', deliverController.create);
+router.post('/new', deliversController.create);
 
-router.get('/show/:id', deliverController.listOne);
+router.get('/show/:id', deliversController.listOne);
 
-router.put('/edit/:id', deliverController.update);
+router.put('/edit/:id', deliversController.update);
 
-router.delete('/delete/:id', deliverController.drop);
+router.delete('/delete/:id', deliversController.drop);
 
 module.exports = router;

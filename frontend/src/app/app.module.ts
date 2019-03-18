@@ -57,6 +57,7 @@ import { CreateDeliveryTruckComponent } from './components/deliveryTrucks/create
 import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/editDeliveryTrucks.component';
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 import { LoginComponent } from './login/login.component';
+import { DinerCheckComponent } from './components/deliver/diner-check/diner-check.component';
 
 
 const routes: Routes = [
@@ -138,7 +139,8 @@ const routes: Routes = [
     CreateDeliveryTruckComponent,
     ListDeliveryTruckComponent,
     EditDeliveryTrucksComponent,
-    LoginComponent
+    LoginComponent,
+    DinerCheckComponent
   ],
   imports: [
     BrowserModule,

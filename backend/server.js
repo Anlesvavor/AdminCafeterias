@@ -14,7 +14,7 @@ const loginRouter = require('./routes/login');
 const requisitionsRouter = require('./routes/requisitions');
 const deliveryTrucksRouter = require('./routes/deliveryTrucks')
 const rolesRouter = require('./routes/roles');
-const deliverRouter = require('./routes/deliver');
+const deliverRouter = require('./routes/delivers');
 
 const app = express();
 
