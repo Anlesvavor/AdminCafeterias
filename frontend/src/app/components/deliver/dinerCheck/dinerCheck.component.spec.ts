@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DinerCheckComponent } from './diner-check.component';
+import { DinerCheckComponent } from './dinerCheck.component';
 
 describe('DinerCheckComponent', () => {
   let component: DinerCheckComponent;

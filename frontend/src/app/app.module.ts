@@ -57,7 +57,7 @@ import { CreateDeliveryTruckComponent } from './components/deliveryTrucks/create
 import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/editDeliveryTrucks.component';
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 import { LoginComponent } from './login/login.component';
-import { DinerCheckComponent } from './components/deliver/diner-check/diner-check.component';
+import { DinerCheckComponent } from './components/deliver/dinerCheck/dinerCheck.component';
 
 
 const routes: Routes = [
@@ -101,6 +101,10 @@ const routes: Routes = [
   { path: 'deliverytrucks/create', component: CreateDeliveryTruckComponent},
   { path: 'deliverytrucks/edit/:id', component: EditDeliveryTrucksComponent},
   { path: 'deliverytrucks/list', component: ListDeliveryTruckComponent},
+
+  { path: 'delivers/dinerCheck', component: DinerCheckComponent},
+
+
 
   { path: '', redirectTo: 'users/list', pathMatch: 'full'}
 ];
