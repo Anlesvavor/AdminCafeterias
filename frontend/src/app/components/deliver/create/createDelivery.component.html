@@ -1,0 +1,22 @@
+
+
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Create a Delivery</div>
+  <div class="card-body">
+      <div *ngFor="let d of dinners; let j = index">
+        <h4>{{d}}</h4>
+        
+
+      <label for="observations">Observations</label>
+      <input
+        id="observations"
+        [formControl]="observationsControl"
+        class="col-md-12"
+        #observations
+      >
+
+      <button class="btn" routerLink="/requisitions/list">Back</button>
+      <button class="btn btn-primary " type="submit" (click)="addRequisition(diner.value, observations.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary" >Save</button>
+
+</div>
+

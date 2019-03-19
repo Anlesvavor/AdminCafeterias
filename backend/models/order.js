@@ -5,7 +5,8 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 let schema = new Schema({
   _cantidad : Number,
   _unidad : String,
-  _producto : String
+  _producto : String,
+  _fulfilled: Boolean
 });
 
 class Order{
@@ -14,6 +15,7 @@ class Order{
     this._cantidad = cantidad;
     this._unidad = unidad;
     this._producto = producto;
+    this._fulfilled = fulfilled;
   }
 
   get cantidad(){
@@ -38,6 +40,14 @@ class Order{
 
   set producto(v){
     this._producto = v;
+  }
+
+  get fulfilled(){
+    return this._fulfilled;
+  }
+
+  set fulfilled(v){
+    this._fulfilled = v;
   }
 }
 

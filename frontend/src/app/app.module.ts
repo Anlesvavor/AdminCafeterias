@@ -58,6 +58,7 @@ import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/ed
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 import { LoginComponent } from './login/login.component';
 import { DinerCheckComponent } from './components/deliver/dinerCheck/dinerCheck.component';
+import { CreateDeliveryComponent } from './components/deliver/create/createDelivery.component';
 
 
 const routes: Routes = [
@@ -103,6 +104,7 @@ const routes: Routes = [
   { path: 'deliverytrucks/list', component: ListDeliveryTruckComponent},
 
   { path: 'delivers/dinerCheck', component: DinerCheckComponent},
+  { path: 'delivers/create', component: CreateDeliveryComponent},
 
 
 
@@ -144,7 +146,8 @@ const routes: Routes = [
     ListDeliveryTruckComponent,
     EditDeliveryTrucksComponent,
     LoginComponent,
-    DinerCheckComponent
+    DinerCheckComponent,
+    CreateDeliveryComponent
   ],
   imports: [
     BrowserModule,

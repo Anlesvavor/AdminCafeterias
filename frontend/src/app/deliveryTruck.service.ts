@@ -47,7 +47,6 @@ export class DeliveryTruckService {
       driverPhoneNumber: driverPhoneNumber,
       capacity: capacity
     };
-    console.log(deliveryTruck);
     return this.http.put(`${this.uri}/deliveryTrucks/edit/${id}`, deliveryTruck);
   }
 
