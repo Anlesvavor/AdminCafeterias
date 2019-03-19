@@ -62,6 +62,18 @@ export class RequisitionsListComponent implements OnInit {
     })
   }
 
+  approveRequisition(id){
+    this.requisitionService.approveRequisition(id).subscribe(() => {
+      this.fetchRequisitions();
+    })
+  }
+
+  refuseRequisition(id){
+    this.requisitionService.refuseRequisition(id).subscribe(() => {
+      this.fetchRequisitions();
+    })
+  }
+
   islevel(level){
     return parseInt(localStorage.getItem('role-value')) >= level
   }

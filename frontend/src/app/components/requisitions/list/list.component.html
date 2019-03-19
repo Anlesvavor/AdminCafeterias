@@ -35,6 +35,14 @@
             {{u._status}}
           </td>
           <td>
+            <button *ngIf="islevel(2) && u._status == 'Pending'" (click)="approveRequisition(u._id)" class="btn btn-primary">
+              <i class="fas fa-check"></i>
+            </button>
+
+            <button *ngIf="islevel(2) && u._status == 'Pending'" (click)="refuseRequisition(u._id)" class="btn btn-danger">
+              <i class="fas fa-times"></i>
+            </button>
+
             <button *ngIf="islevel(2)" routerLink="/requisitions/edit/{{u._id}}" class="btn btn-warning">
               <i class="fas fa-edit"></i>
             </button>

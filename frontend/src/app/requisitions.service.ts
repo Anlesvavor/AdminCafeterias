@@ -28,6 +28,20 @@ export class RequisitionsService {
     return this.http.get(`${this.uri}/requisitions/show/${id}`);
   }
 
+  approveRequisition(id){
+    const requisition = {
+      status: "Approved"
+    }
+    return this.http.put(`${this.uri}/requisitions/edit/${id}`, requisition);
+  }
+
+  refuseRequisition(id){
+    const requisition = {
+      status: "Refused"
+    }
+    return this.http.put(`${this.uri}/requisitions/edit/${id}`, requisition);
+  }
+
   addRequisition(diner, orders, observations) {
     const requisition = {
       diner: diner,
@@ -63,5 +77,3 @@ export class RequisitionsService {
     return this.http.delete(`${this.uri}/requisitions/delete/${id}`);
   }
 }
-
-

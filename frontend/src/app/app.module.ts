@@ -108,7 +108,7 @@ const routes: Routes = [
 
 
 
-  { path: '', redirectTo: 'users/list', pathMatch: 'full', canActivate: [AuthGuard]}
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [AuthGuard]}
 ];
 
 @NgModule({
