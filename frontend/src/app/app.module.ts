@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule} from "@angular/forms";
 import { MatToolbarModule,
@@ -58,55 +58,57 @@ import { EditDeliveryTrucksComponent } from './components/deliveryTrucks/edit/ed
 import { ListDeliveryTruckComponent } from './components/deliveryTrucks/list/listDeliveryTruck.component';
 import { LoginComponent } from './login/login.component';
 import { DinerCheckComponent } from './components/deliver/dinerCheck/dinerCheck.component';
-
+import { LoginService } from './login.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service'
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent},
 
-  { path: 'users/create', component: UserCreateComponent},
-  { path: 'users/edit/:id', component: UserEditComponent},
-  { path: 'users/list', component: UserListComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'users/create', component: UserCreateComponent, canActivate: [AuthGuard]},
+  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard]},
+  { path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 
-  { path: 'providers/create', component: ProvidersCreateComponent},
-  { path: 'providers/edit/:id', component: ProvidersEditComponent},
-  { path: 'providers/list', component: ProvidersListComponent},
+  { path: 'providers/create', component: ProvidersCreateComponent, canActivate: [AuthGuard]},
+  { path: 'providers/edit/:id', component: ProvidersEditComponent, canActivate: [AuthGuard]},
+  { path: 'providers/list', component: ProvidersListComponent, canActivate: [AuthGuard]},
 
-  { path: 'units/create', component: CreateUnitComponent},
-  { path: 'units/edit/:id', component: EditUnitComponent},
-  { path: 'units/list', component: ListUnitComponent},
+  { path: 'units/create', component: CreateUnitComponent, canActivate: [AuthGuard]},
+  { path: 'units/edit/:id', component: EditUnitComponent, canActivate: [AuthGuard]},
+  { path: 'units/list', component: ListUnitComponent, canActivate: [AuthGuard]},
 
-  { path: 'categories/create', component: CategoriesCreateComponent},
-  { path: 'categories/edit/:id', component: CategoriesEditComponent},
-  { path: 'categories/list', component: CategoriesListComponent},
+  { path: 'categories/create', component: CategoriesCreateComponent, canActivate: [AuthGuard]},
+  { path: 'categories/edit/:id', component: CategoriesEditComponent, canActivate: [AuthGuard]},
+  { path: 'categories/list', component: CategoriesListComponent, canActivate: [AuthGuard]},
 
-  { path: 'dinners/create', component: DinnersCreateComponent},
-  { path: 'dinners/edit/:id', component: DinnersEditComponent},
-  { path: 'dinners/list', component: DinnersListComponent},
+  { path: 'dinners/create', component: DinnersCreateComponent, canActivate: [AuthGuard]},
+  { path: 'dinners/edit/:id', component: DinnersEditComponent, canActivate: [AuthGuard]},
+  { path: 'dinners/list', component: DinnersListComponent, canActivate: [AuthGuard]},
 
-  { path: 'products/create', component: ProductsCreateComponent},
-  { path: 'products/edit/:id', component: ProductsEditComponent},
-  { path: 'products/list', component: ProductsListComponent},
+  { path: 'products/create', component: ProductsCreateComponent, canActivate: [AuthGuard]},
+  { path: 'products/edit/:id', component: ProductsEditComponent, canActivate: [AuthGuard]},
+  { path: 'products/list', component: ProductsListComponent, canActivate: [AuthGuard]},
 
-  { path: 'roles/create', component: RolesCreateComponent},
-  { path: 'roles/edit/:id', component: RolesEditComponent},
-  { path: 'roles/list', component: RolesListComponent},
+  { path: 'roles/create', component: RolesCreateComponent, canActivate: [AuthGuard]},
+  { path: 'roles/edit/:id', component: RolesEditComponent, canActivate: [AuthGuard]},
+  { path: 'roles/list', component: RolesListComponent, canActivate: [AuthGuard]},
 
-  { path: 'requisitions/create', component: RequisitionsCreateComponent},
-  { path: 'requisitions/edit/:id', component: RequisitionsEditComponent},
-  { path: 'requisitions/list', component: RequisitionsListComponent},
-  { path: 'requisitions/details/:id', component: RequisitionsDetailComponent},
+  { path: 'requisitions/create', component: RequisitionsCreateComponent, canActivate: [AuthGuard]},
+  { path: 'requisitions/edit/:id', component: RequisitionsEditComponent, canActivate: [AuthGuard]},
+  { path: 'requisitions/list', component: RequisitionsListComponent, canActivate: [AuthGuard]},
+  { path: 'requisitions/details/:id', component: RequisitionsDetailComponent, canActivate: [AuthGuard]},
 
-  { path: 'deliverytrucks/create', component: CreateDeliveryTruckComponent},
-  { path: 'deliverytrucks/edit/:id', component: EditDeliveryTrucksComponent},
-  { path: 'deliverytrucks/list', component: ListDeliveryTruckComponent},
+  { path: 'deliverytrucks/create', component: CreateDeliveryTruckComponent, canActivate: [AuthGuard]},
+  { path: 'deliverytrucks/edit/:id', component: EditDeliveryTrucksComponent, canActivate: [AuthGuard]},
+  { path: 'deliverytrucks/list', component: ListDeliveryTruckComponent, canActivate: [AuthGuard]},
 
-  { path: 'delivers/dinerCheck', component: DinerCheckComponent},
+  { path: 'delivers/dinerCheck', component: DinerCheckComponent, canActivate: [AuthGuard]},
 
 
 
-  { path: '', redirectTo: 'users/list', pathMatch: 'full'}
+  { path: '', redirectTo: 'users/list', pathMatch: 'full', canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -167,7 +169,12 @@ const routes: Routes = [
     MatAutocompleteModule
 
   ],
-  providers: [UserService],
+  providers: [UserService, LoginService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

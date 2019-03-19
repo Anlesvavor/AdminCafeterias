@@ -13,10 +13,17 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(data){
-
     return this.http.post(`${this.uri}/login`, data).pipe(
       map(this.extractData)
     );
+  }
+
+  islogged(){
+    return localStorage.getItem('token') || false;
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   private extractData(res: Response){

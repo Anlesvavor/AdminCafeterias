@@ -44,19 +44,37 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/users', usersRouter);
-app.use('/units', unitsRouter);
-app.use('/providers', providersRouter);
-app.use('/products', productsRouter);
-app.use('/diningRooms', diningRoomsRouter);
-app.use('/orders', ordersRouter);
-app.use('/categories', categoriesRouter);
-app.use('/requisitions', requisitionsRouter);
-app.use('/roles', rolesRouter);
-app.use('/deliveryTrucks', deliveryTrucksRouter);
-app.use('/deliver', deliverRouter);
+function verifyToken(req, res, next) {
+
+  if (!req.headers.authorization) {
+    return res.status(401).send('Unauthorized request');
+  }
+  let token = req.headers.authorization.split(' ')[1];
+  if (token === 'null') {
+    return res.status(401).send('Unauthorized request');
+  }
+  let payload = jwt.verify(token, 'secretKey');
+  if (!payload) {
+    return res.status(401).send('Unauthorized request');
+  }
+  req.userId = payload.subject;
+  next();
+
+}
+
+app.get('/', verifyToken, indexRouter);
+app.use('/login', verifyToken, loginRouter);
+app.use('/users', verifyToken, usersRouter);
+app.use('/units', verifyToken, unitsRouter);
+app.use('/providers', verifyToken, providersRouter);
+app.use('/products', verifyToken, productsRouter);
+app.use('/diningRooms', verifyToken, diningRoomsRouter);
+app.use('/orders', verifyToken, ordersRouter);
+app.use('/categories', verifyToken, categoriesRouter);
+app.use('/requisitions', verifyToken, requisitionsRouter);
+app.use('/roles', verifyToken, rolesRouter);
+app.use('/deliveryTrucks', verifyToken, deliveryTrucksRouter);
+app.use('/deliver', verifyToken, deliverRouter);
 
 const port = 4444;
 app.listen(port, () => console.log('Expresss running on port ' + port));
