@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleService } from '../role.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  role: any = {};
+
+  constructor(private roleService: RoleService) { }
 
   ngOnInit() {
+  }
+
+  isAdmin(){
+    return localStorage.getItem('role-value') > 2;
   }
 
 }

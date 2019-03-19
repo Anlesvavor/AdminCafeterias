@@ -5,7 +5,7 @@
       <span>Dashboard</span>
     </a>
   </li>
-  <li class="nav-item dropdown">
+  <li *ngIf="isAdmin()" class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-fw fa-folder"></i>
       <span>Admin</span>
@@ -23,8 +23,6 @@
       <h6 class="dropdown-header">Dinners</h6>
       <a class="dropdown-item" href="/dinners/list">Dinners</a>
       <div class="dropdown-divider"></div>
-      <h6 class="dropdown-header">Requisitions</h6>
-      <a class="dropdown-item" href="/requisitions/list">Requisitions</a>
       <h6 class="dropdown-header">Delivery Trucks</h6>
       <a class="dropdown-item" href="/deliverytrucks/list">Delivery Trucks</a>
       <!-- <h6 class="dropdown-header">Other Pages:</h6>
@@ -33,8 +31,8 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="/requisitions/list">
       <i class="fas fa-fw fa-table"></i>
-      <span>Orders</span></a>
+      <span>Requisitions</span></a>
   </li>
 </ul>
