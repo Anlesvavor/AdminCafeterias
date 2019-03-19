@@ -63,7 +63,7 @@ function verifyToken(req, res, next) {
 }
 
 app.get('/', verifyToken, indexRouter);
-app.use('/login', verifyToken, loginRouter);
+app.use('/login', loginRouter);
 app.use('/users', verifyToken, usersRouter);
 app.use('/units', verifyToken, unitsRouter);
 app.use('/providers', verifyToken, providersRouter);
