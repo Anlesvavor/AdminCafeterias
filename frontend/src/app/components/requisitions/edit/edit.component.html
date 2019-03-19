@@ -135,6 +135,27 @@
         </form>
         <br />
       </div>
+
+      <h4>Observations</h4>
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-label-group">
+            <label for="status" >Status</label>
+            <input
+              [(ngModel)]="requisition._observations"
+              name="observations"
+              id="observations"
+              #observations
+              class="form-control col-md-12"
+              required
+              [ngModelOptions]="{standalone: true}"
+              disabled="disabled"
+            />
+          </div>
+        </div>
+      </div>
+      <br/>
+      <h4>Approval Observations</h4>
       <div class="form-row">
         <div class="col-md-12">
           <div class="form-label-group">
@@ -150,6 +171,8 @@
           </div>
         </div>
       </div>
+      <br/>
+      <h4>Status</h4>
       <div class="form-row">
         <div class="col-md-12">
           <div class="form-label-group">
@@ -162,6 +185,7 @@
               class="form-control col-md-12"
               required
               [ngModelOptions]="{standalone: true}"
+              [value]="Pending"
             >
               <option value="Approved">Approved</option>
               <option value="Pending">Pending</option>
@@ -170,7 +194,7 @@
           </div>
         </div>
       </div>
-
+      <br/>
       <button class="btn" routerLink="/requisitions/list">Back</button>
       <button class="btn btn-primary " type="submit" (click)="updateRequisition()" [disabled]=" updateForm.invalid" mat-raised-button color="primary" >Save</button>
     </form>
