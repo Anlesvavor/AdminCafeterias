@@ -27,7 +27,9 @@
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "./src/assets/startbootstrap-sb-admin-gh-pages/js/sb-admin.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

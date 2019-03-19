@@ -1,5 +1,4 @@
 app-sidebar {
-    width: 90px !important;
     background-color: #212529 !important;
     min-height: calc(100vh - 56px);
 }
@@ -19,7 +18,7 @@ app-sidebar .nav-item .nav-link span {
     display: block;
 }
 
-app-sidebar .nav-item .dropdown-menu {
+/* app-sidebar .nav-item .dropdown-menu {
     position: absolute !important;
     -webkit-transform: none !important;
     transform: none !important;
@@ -47,11 +46,11 @@ app-sidebar .nav-item .nav-link:active, app-sidebar .nav-item .nav-link:focus, a
 app-sidebar.toggled {
     width: 0 !important;
     overflow: hidden;
-}
+} */
 
 @media (min-width: 768px) {
     app-sidebar {
-        width: 225px !important;
+        /* width: 225px !important; */
     }
     app-sidebar .nav-item .nav-link {
         display: block;
