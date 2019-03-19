@@ -30,6 +30,8 @@ export class EditUnitComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.unitService.getUnitById(this.id).subscribe(res => {

@@ -27,13 +27,16 @@ export class EditDeliveryTrucksComponent implements OnInit {
     this.updateForm = this.fb.group({
       name: ['', Validators.required],
       driver: ['', Validators.required],
-      plateNumber: ['', Validators.required], 
-      driverPhoneNumber: ['', Validators.required], 
+      plateNumber: ['', Validators.required],
+      driverPhoneNumber: ['', Validators.required],
       capacity: ['', Validators.required]
     });
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.deliveryTruckService.getDeliveryTruckById(this.id).subscribe(res => {

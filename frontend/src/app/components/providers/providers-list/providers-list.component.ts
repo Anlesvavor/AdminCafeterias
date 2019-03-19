@@ -21,6 +21,9 @@ export class ProvidersListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.providerService.getProviders().subscribe(providers => {
       this.providers = providers;
       this.providers = this.providers.data.docs;

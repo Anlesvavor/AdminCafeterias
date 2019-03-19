@@ -18,6 +18,9 @@ export class CategoriesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.categoriesService.getCategories().subscribe(categories => {
       this.categories = categories;
       this.categories = this.categories.data.docs;

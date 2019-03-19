@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   }
 
   isAdmin(){
-    return localStorage.getItem('role-value') > 2;
+    return parseInt(localStorage.getItem('role-value')) > 2;
   }
 
 }

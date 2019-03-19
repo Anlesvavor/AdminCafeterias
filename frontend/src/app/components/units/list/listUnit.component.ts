@@ -20,6 +20,9 @@ export class ListUnitComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+
     this.unitService.getUnits().subscribe(units => {
       this.units = units;
       this.units = this.units.data.docs;

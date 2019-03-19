@@ -20,6 +20,9 @@ export class ListDeliveryTruckComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.deliveryTruckService.getDeliveryTrucks().subscribe(deliveryTrucks => {
       this.deliveryTrucks = deliveryTrucks;
       this.deliveryTrucks = this.deliveryTrucks.data.docs;

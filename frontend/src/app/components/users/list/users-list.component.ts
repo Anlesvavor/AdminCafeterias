@@ -20,6 +20,9 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+
     this.fetchUsers();
   }
 

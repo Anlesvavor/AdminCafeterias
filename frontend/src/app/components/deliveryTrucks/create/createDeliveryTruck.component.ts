@@ -13,8 +13,8 @@ export class CreateDeliveryTruckComponent implements OnInit {
     this.createForm = this.fb.group({
       name: ['', Validators.required],
       driver: ['', Validators.required],
-      plateNumber: ['', Validators.required], 
-      driverPhoneNumber: ['', Validators.required], 
+      plateNumber: ['', Validators.required],
+      driverPhoneNumber: ['', Validators.required],
       capacity: ['', Validators.required]
     });
   }
@@ -24,5 +24,7 @@ export class CreateDeliveryTruckComponent implements OnInit {
     });
   }
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
   }
 }

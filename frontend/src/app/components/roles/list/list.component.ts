@@ -18,6 +18,9 @@ export class RolesListComponent implements OnInit {
   constructor(private roleService: RoleService, private router: Router) { }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+
     this.fetchRoles();
   }
 

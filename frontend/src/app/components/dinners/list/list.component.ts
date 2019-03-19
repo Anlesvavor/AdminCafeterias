@@ -17,6 +17,9 @@ export class DinnersListComponent implements OnInit {
   constructor(private dinnerService: DinnerService, private router: Router) { }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.dinnerService.getDinners().subscribe(dinners => {
       this.dinners = dinners;
       this.dinners = this.dinners.data.docs;

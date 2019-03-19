@@ -62,4 +62,8 @@ export class RequisitionsListComponent implements OnInit {
     })
   }
 
+  islevel(level){
+    return parseInt(localStorage.getItem('role-value')) >= level
+  }
+
 }

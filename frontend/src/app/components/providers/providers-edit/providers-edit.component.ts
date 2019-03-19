@@ -37,6 +37,9 @@ export class ProvidersEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.providerService.getProviderById(this.id).subscribe(res => {

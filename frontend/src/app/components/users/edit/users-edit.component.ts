@@ -34,6 +34,8 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.userService.getUserById(this.id).subscribe(res => {

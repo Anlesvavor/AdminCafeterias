@@ -65,6 +65,8 @@ export class RequisitionsEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 2)
+      this.router.navigate(['/dashboard']);
     this.fetchData();
     /*
     this.updateForm = this.fb.group({

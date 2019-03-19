@@ -27,6 +27,9 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (parseInt(localStorage.getItem('role-value')) < 3)
+      this.router.navigate(['/dashboard']);
+      
     this.productService.getProducts().subscribe(products => {
       this.products = products;
       this.products = this.products.data.docs;
