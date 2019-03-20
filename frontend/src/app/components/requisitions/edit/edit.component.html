@@ -97,6 +97,7 @@
                         class="form-control col-md-12"
                         #name="ngModel"
                         min="0"
+                        oninput="validity.valid||(value='');"
                         required
                       />
                     </div>
