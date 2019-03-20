@@ -60,7 +60,8 @@ import { LoginComponent } from './login/login.component';
 import { DinerCheckComponent } from './components/deliver/dinerCheck/dinerCheck.component';
 import { LoginService } from './login.service';
 import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service'
+import { TokenInterceptorService } from './token-interceptor.service';
+import { ListDinerDeliversComponent } from './components/deliver/list-diner-delivers/list-diner-delivers.component'
 
 const routes: Routes = [
 
@@ -106,8 +107,6 @@ const routes: Routes = [
 
   { path: 'delivers/dinerCheck', component: DinerCheckComponent, canActivate: [AuthGuard]},
 
-
-
   { path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [AuthGuard]}
 ];
 
@@ -146,7 +145,8 @@ const routes: Routes = [
     ListDeliveryTruckComponent,
     EditDeliveryTrucksComponent,
     LoginComponent,
-    DinerCheckComponent
+    DinerCheckComponent,
+    ListDinerDeliversComponent
   ],
   imports: [
     BrowserModule,

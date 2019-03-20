@@ -1,0 +1,65 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Providers</div>
+
+
+  <div class="card-body">
+    <button routerLink="/providers/create" class="btn btn-primary">Add Provider</button>
+    <ng-container *ngFor="let d of delivers" >
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th colspan="6">Deliver</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td rowspan="2">Diner</td>
+            <td rowspan="2" colspan="3">{{d.dinerId}}</td>
+            <td>Date Sent</td>
+            <td colspan="2">{{d.dateSent | date:'HH:mm dd/MM/yyyy'}}</td>
+          </tr>
+          <tr>
+            <td>Date Received</td>
+            <td colspan="2">{{d.dateReceived}}</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td colspan="2">{{d.status}}</td>
+            <td>Truck ID</td>
+            <td colspan="2">d.truckId</td>
+          </tr>
+          <tr>
+            <td colspan="6">Order Sent</td>
+          </tr>
+          <tr *ngFor="let o of d.orderSent">
+            <td colspan="4">{{o.product}}</td>
+            <td colspan="1">{{o.unit}}</td>
+            <td colspan="1">{{o.quantity}}</td>
+          </tr>
+          <tr>
+            <td colspan="6">Order Received</td>
+          </tr>
+          <tr *ngFor="let o of d.orderReceived">
+            <td colspan="4">{{o.product}}</td>
+            <td colspan="1">{{o.unit}}</td>
+            <td colspan="1">{{o.quantity}}</td>
+          </tr>
+          <tr>
+            <td colspan="6"></td>
+          </tr>
+          <tr>
+            <td colspan="6">Observations</td>
+          </tr>
+          <tr>
+            <td colspan="6">{{d.observations}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+  </div>
+</div>

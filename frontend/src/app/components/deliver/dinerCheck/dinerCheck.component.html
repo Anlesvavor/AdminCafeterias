@@ -2,61 +2,110 @@
 
   <div class="card-header">
     <i class="fas fa-table"></i>
-    Providers</div>
+    Delivers</div>
 
 
   <div class="card-body">
     <button routerLink="/providers/create" class="btn btn-primary">Add Provider</button>
-    <ng-container >
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-        <tr>
-          <th colspan="6">Deliver</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td rowspan="2">Diner</td>
-            <td rowspan="2" colspan="3">Comedor</td>
-            <td>Date Sent</td>
-            <td colspan="2">dd/MM/yyy</td>
-          </tr>
-          <tr>
-            <td>Date Received</td>
-            <td colspan="2">dd/MM/yyy</td>
-          </tr>
-          <tr>
-            <td>Status</td>
-            <td colspan="2">Estado</td>
-            <td>Truck ID</td>
-            <td colspan="2">123456789</td>
-          </tr>
-          <tr>
-            <td colspan="6">Order Sent</td>
-          </tr>
-          <tr>
-            <td colspan="6"></td>
-          </tr>
-          <tr>
-            <td colspan="6">Order Received</td>
-          </tr>
-          <tr>
-            <td colspan="6"></td>
-          </tr>
-          <tr>
-            <td colspan="6"></td>
-          </tr>
-          <tr>
-            <td colspan="6">Observations</td>
-          </tr>
-          <tr>
-            <td colspan="6">Bla bla bla bla</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </ng-container>
+        <form >
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th colspan="6">Deliver</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td rowspan="2">Diner</td>
+              <td rowspan="2" colspan="3">{{d.dinerId}}</td>
+              <td>Date Sent</td>
+              <td colspan="2">{{d.dateSent | date:'HH:mm dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+              <td>Date Received</td>
+              <td colspan="2">{{d.dateReceived}}</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td colspan="2">{{d.status}}</td>
+              <td>Truck ID</td>
+              <td colspan="2">{{d.truckId}}</td>
+            </tr>
+            <tr>
+              <td colspan="6">Order Sent</td>
+            </tr>
+            <tr *ngFor="let o of d.orderSent">
+              <td colspan="4">{{o.product}}</td>
+              <td colspan="1">{{o.unit}}</td>
+              <td colspan="1">{{o.quantity}}</td>
+            </tr>
+            <tr>
+              <td colspan="6">Order Received</td>
+            </tr>
+            <tr *ngFor="let o of d.orderReceived; let i = index">
+              <td colspan="4">
+                <input
+                  [ngModel]="d.orderReceived[i].product"
+                  class="form-control col-md-12"
+                  matInput
+                  id="orderReceived{{i}}"
+                  name="orderReceived{{i}}"
+                  [matAutocomplete]="auto"
+                  required
+                  placeholder=""
+                  #diner
+                />
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredProductOptions | async" [value]="option._name">{{option._name}}</mat-option>
+                </mat-autocomplete>
+              </td>
+              <td colspan="1">
+
+                <input
+                  [(ngModel)]="c.orders[i].unit"
+                  class="form-control col-md-12"
+                  matInput
+                  id="unities{{i}}"
+                  name="unities{{i}}"
+                  [matAutocomplete]="auto3"
+                  required
+                  #unities
+                />
+
+                <mat-autocomplete #auto3="matAutocomplete">
+                  <ng-container *ngFor="let option of filteredUnitOptions | async">
+                    <mat-option  [value]="option._name">{{option._name}}</mat-option>
+                  </ng-container>
+                </mat-autocomplete>
+
+              </td>
+              <td colspan="1">
+                <input
+                  type="number"
+                  [(ngModel)]="d.orderReceived[i].quantity"
+                  id="quantity{{i}}"
+                  name="quantity{{i}}"
+                  class="form-control col-md-12"
+                  #name="ngModel"
+                  min="0"
+                  oninput="validity.valid||(value='');"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6"></td>
+            </tr>
+            <tr>
+              <td colspan="6">Observations</td>
+            </tr>
+            <tr>
+              <td colspan="6">{{d.observations}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
   </div>
-  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
